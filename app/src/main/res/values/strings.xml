@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">DeviceTest</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+
+    <string name="device_info">Device Info</string>
+    <string name="cpu">CPU</string>
+    <string name="sensors">Sensors</string>
+
+    <string name="device">Device\n</string>
+    <string name="device_board">Board: %1$s\n</string>
+    <string name="device_brand">Brand: %1$s\n</string>
+    <string name="device_device">Device: %1$s\n</string>
+    <string name="device_model">Model: %1$s\n</string>
+    <string name="device_product">Product: %1$s\n</string>
+
+    <string name="os">Operating System\n</string>
+    <string name="os_build">Build release: %1$s; %2$s\n</string>
+    <string name="os_build_display">Build: %1$s\n</string>
+    <string name="os_build_id">Build ID: %1$s\n</string>
+    <string name="os_time">Time: %1$d\n</string>
+    <string name="os_type">Type: %1$s\n</string>
+    <string name="os_user">User: %1$s\n</string>
+
+    <string name="screen">Screen\n</string>
+    <string name="screen_width">Width: %1$dpx\n</string>
+    <string name="screen_height">Height: %1$dpx\n</string>
+    <string name="density_density">Density: %1$f\n</string>
+    <string name="density_dpi">Density DPI: %1$d\n</string>
+    <string name="density_xdpi">xdpi: %1$f\n</string>
+    <string name="density_ydpi">ydpi: %1$f\n</string>
+
+    <string name="light_sensor">Light</string>
+    <string name="light_sensor_bright">bright</string>
+    <string name="light_sensor_dark">dark</string>
+
+    <string name="proximity_sensor">Proximity</string>
+    <string name="proximity_sensor_near">near</string>
+    <string name="proximity_sensor_far">far</string>
+
+    <string name="gravity_sensor">Gravity</string>
+    <string name="accelerometer_sensor">Accelerometer</string>
+
+    <string name="sensor_unknow">unknow</string>
+
+</resources>

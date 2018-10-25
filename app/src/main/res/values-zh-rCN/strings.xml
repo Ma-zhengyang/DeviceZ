@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">硬件检测</string>
+    <string name="navigation_drawer_open">开</string>
+    <string name="navigation_drawer_close">关</string>
+
+    <string name="device_info">设备信息</string>
+    <string name="cpu">处理器</string>
+    <string name="sensors">传感器</string>
+
+    <string name="device">设备</string>
+    <string name="os">操作系统</string>
+    <string name="screen">屏幕</string>
+
+    <string name="light_sensor">光线</string>
+    <string name="light_sensor_bright">亮</string>
+    <string name="light_sensor_dark">暗</string>
+
+    <string name="proximity_sensor">距离</string>
+    <string name="proximity_sensor_near">近</string>
+    <string name="proximity_sensor_far">远</string>
+
+    <string name="gravity_sensor">重力</string>
+    <string name="accelerometer_sensor">加速度</string>
+
+    <string name="sensor_unknow">未知</string>
+
+</resources>
