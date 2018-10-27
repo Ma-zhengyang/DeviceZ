@@ -38,13 +38,13 @@ public class SensorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.list = list;
     }
 
-    public void enableAll() {
+    public void enable() {
         for (DeviceSensor device : list) {
             device.enable();
         }
     }
 
-    public void disableAll() {
+    public void disable() {
         for (DeviceSensor device : list) {
             device.disable();
         }
@@ -64,6 +64,10 @@ public class SensorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         //Log.d(TAG, "onBindViewHolder: ");
 
         DeviceSensor deviceSensor = list.get(position);
+
+        ((SensorHolder) holder).title.setText(null);
+        ((SensorHolder) holder).value.setText(null);
+        ((SensorHolder) holder).event.setText(null);
 
         ((SensorHolder) holder).title.setText(deviceSensor.getName());
 
@@ -103,7 +107,7 @@ public class SensorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        enableAll();
+                        enable();
                     }
 
                     @Override

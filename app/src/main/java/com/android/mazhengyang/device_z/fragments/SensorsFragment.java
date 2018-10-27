@@ -1,6 +1,8 @@
 package com.android.mazhengyang.device_z.fragments;
 
 import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +18,9 @@ import com.android.mazhengyang.device_z.adapter.SensorAdapter;
 import com.android.mazhengyang.device_z.sensors.AccelerometerSensor;
 import com.android.mazhengyang.device_z.sensors.DeviceSensor;
 import com.android.mazhengyang.device_z.sensors.GravitySensor;
+import com.android.mazhengyang.device_z.sensors.GyroscopeSensor;
 import com.android.mazhengyang.device_z.sensors.LightSensor;
+import com.android.mazhengyang.device_z.sensors.MagnetometerSensor;
 import com.android.mazhengyang.device_z.sensors.ProximitySensor;
 
 import java.util.ArrayList;
@@ -59,11 +63,7 @@ public class SensorsFragment extends Fragment implements DeviceSensor.Callback {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        List<DeviceSensor> list = new ArrayList<>();
-        list.add(new AccelerometerSensor(context, this));
-        list.add(new GravitySensor(context, this));
-        list.add(new LightSensor(context, this));
-        list.add(new ProximitySensor(context, this));
+        List<DeviceSensor> list = initSensorList(context);
 
         sensorAdapter = new SensorAdapter(context, list);
         recyclerView.setAdapter(sensorAdapter);
@@ -81,15 +81,35 @@ public class SensorsFragment extends Fragment implements DeviceSensor.Callback {
     }
 
     @Override
-    public void update() {
+    public void onDestroyView() {
+        Log.d(TAG, "onDestroyView: ");
+        super.onDestroyView();
         if (sensorAdapter != null) {
-            sensorAdapter.notifyDataSetChanged();
+            sensorAdapter.disable();
         }
     }
 
-    public void disableAll() {
+    private List<DeviceSensor> initSensorList(Context context){
+        SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        List<Sensor> support = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        for (Sensor sensor: support){
+            Log.d(TAG, "initSensorList: " + sensor.getName());
+        }
+
+        List<DeviceSensor> list = new ArrayList<>();
+        list.add(new AccelerometerSensor(context, this));
+        list.add(new GravitySensor(context, this));
+        list.add(new LightSensor(context, this));
+        list.add(new ProximitySensor(context, this));
+        list.add(new GyroscopeSensor(context, this));
+        list.add(new MagnetometerSensor(context, this));
+        return list;
+    }
+
+    @Override
+    public void update() {
         if (sensorAdapter != null) {
-            sensorAdapter.disableAll();
+            sensorAdapter.notifyDataSetChanged();
         }
     }
 }

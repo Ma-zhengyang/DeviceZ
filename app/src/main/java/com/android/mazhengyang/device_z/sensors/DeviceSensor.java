@@ -47,6 +47,10 @@ public abstract class DeviceSensor implements SensorEventListener {
                 return context.getString(R.string.gravity_sensor);
             case Sensor.TYPE_ACCELEROMETER:
                 return context.getString(R.string.accelerometer_sensor);
+            case Sensor.TYPE_GYROSCOPE:
+                return context.getString(R.string.gyroscope_sensor);
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                return context.getString(R.string.magnetometer_sensor);
             default:
                 return context.getString(R.string.sensor_unknow);
         }
