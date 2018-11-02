@@ -4,6 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="light_yellow">#33ffff00</color>
+
+    <color name="device_info_color">#AAEE3B3B</color>
+    <color name="cpu_info_color">#AA00008B</color>
+    <color name="sensors_info_color">#AA548B54</color>
+    <color name="battery_info_color">#AAFF7F24</color>
 
 </resources>

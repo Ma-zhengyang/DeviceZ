@@ -1,52 +1,33 @@
 <resources>
     <string name="app_name">Device-Z</string>
-    <string name="navigation_drawer_open">open</string>
-    <string name="navigation_drawer_close">close</string>
 
     <string name="device_info">Device Info</string>
-    <string name="cpu">CPU</string>
-    <string name="sensors">Sensors</string>
-    <string name="battery">Battery</string>
+    <string name="cpu_info">CPU</string>
+    <string name="sensors_info">Sensors</string>
+    <string name="battery_info">Battery</string>
 
-    <string name="device">Device\n</string>
-    <string name="device_board">Board: %1$s\n</string>
-    <string name="device_brand">Brand: %1$s\n</string>
-    <string name="device_device">Device: %1$s\n</string>
-    <string name="device_model">Model: %1$s\n</string>
-    <string name="device_product">Product: %1$s\n</string>
-
-    <string name="os">Operating System\n</string>
-    <string name="os_build">Build release: %1$s; %2$s\n</string>
-    <string name="os_build_display">Build: %1$s\n</string>
-    <string name="os_build_id">Build ID: %1$s\n</string>
-    <string name="os_time">Time: %1$d\n</string>
-    <string name="os_type">Type: %1$s\n</string>
-    <string name="os_user">User: %1$s\n</string>
-
-    <string name="screen">Screen\n</string>
-    <string name="screen_width">Width: %1$dpx\n</string>
-    <string name="screen_height">Height: %1$dpx\n</string>
-    <string name="density_density">Density: %1$f\n</string>
-    <string name="density_dpi">Density DPI: %1$d\n</string>
-    <string name="density_xdpi">xdpi: %1$f\n</string>
-    <string name="density_ydpi">ydpi: %1$f\n</string>
-
-    <string name="light_sensor">Light</string>
-    <string name="light_sensor_bright">bright</string>
-    <string name="light_sensor_dark">dark</string>
-
-    <string name="proximity_sensor">Proximity</string>
-    <string name="proximity_sensor_near">near</string>
-    <string name="proximity_sensor_far">far</string>
-
-    <string name="gravity_sensor">Gravity</string>
-    <string name="accelerometer_sensor">Accelerometer</string>
-    <string name="gyroscope_sensor">Gyroscope</string>
-    <string name="magnetometer_sensor">Magnetometer</string>
-
-    <string name="sensor_unknow">unknow</string>
-
-    <string name="battery_message">Status: %1$s \nCharge: %2$s \nTemperature: %3$f℃ \nVoltage: %4$.1f mv \nCapacity rate: %5$d \nHealth: %6$s</string>
+    <!--device info-->
+    <string name="device_brand">Brand:</string>
+    <string name="device_model">Model:</string>
+    <string name="device_product">Product:</string>
+    <string name="device_board">Board:</string>
+    <string name="hardware">Hardware：</string>
+    <string name="os_build">Build release:</string>
+    <string name="os_build_display">Build display:</string>
+    <string name="sdk">SDK:</string>
+    <string name="os_build_id">ID:</string>
+    <string name="os_time">Time:</string>
+    <string name="os_type">Type:</string>
+    <string name="fingerprint">Fingerprint:</string>
+    <string name="tag">Tag:</string>
+    <!--battery info-->
+    <string name="battery_status">Status:</string>
+    <string name="battery_charge">Charge:</string>
+    <string name="battery_health">Health:</string>
+    <string name="battery_capacity">Capacity rate:</string>
+    <string name="battery_voltage">Voltage:</string>
+    <string name="battery_temperature">Temperature:</string>
+    <string name="battery_echnology">Echnology:</string>
     <string name="battery_status_charging">Charging</string>
     <string name="battery_status_discharging">Dis charging</string>
     <string name="battery_status_not_charging">Not charging</string>
@@ -63,5 +44,20 @@
     <string name="battery_health_unspecified_failure">Unspecified failure</string>
     <string name="battery_health_cold">Cold</string>
     <string name="battery_health_unknow">Unknow</string>
+
+    <string name="light_sensor">Light</string>
+    <string name="light_sensor_bright">bright</string>
+    <string name="light_sensor_dark">dark</string>
+
+    <string name="proximity_sensor">Proximity</string>
+    <string name="proximity_sensor_near">near</string>
+    <string name="proximity_sensor_far">far</string>
+
+    <string name="gravity_sensor">Gravity</string>
+    <string name="accelerometer_sensor">Accelerometer</string>
+    <string name="gyroscope_sensor">Gyroscope</string>
+    <string name="magnetometer_sensor">Magnetometer</string>
+
+    <string name="sensor_unknow">unknow</string>
 
 </resources>

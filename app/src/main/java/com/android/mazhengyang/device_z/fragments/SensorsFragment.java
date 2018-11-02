@@ -14,14 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.adapter.SensorAdapter;
-import com.android.mazhengyang.device_z.sensors.AccelerometerSensor;
-import com.android.mazhengyang.device_z.sensors.DeviceSensor;
-import com.android.mazhengyang.device_z.sensors.GravitySensor;
-import com.android.mazhengyang.device_z.sensors.GyroscopeSensor;
-import com.android.mazhengyang.device_z.sensors.LightSensor;
-import com.android.mazhengyang.device_z.sensors.MagnetometerSensor;
-import com.android.mazhengyang.device_z.sensors.ProximitySensor;
+import com.android.mazhengyang.device_z.adapter.ParentAdapter;
+import com.android.mazhengyang.device_z.bean.BaseBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +27,12 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-10-19.
  */
 
-public class SensorsFragment extends Fragment implements DeviceSensor.Callback {
+public class SensorsFragment extends Fragment {
 
     private final String TAG = SensorsFragment.class.getSimpleName();
 
-    private SensorAdapter sensorAdapter;
-
-    @BindView(R.id.sensors_recyclerview)
-    RecyclerView recyclerView;
+    @BindView(R.id.parent_recyclerview)
+    RecyclerView parentRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,24 +50,16 @@ public class SensorsFragment extends Fragment implements DeviceSensor.Callback {
 
         Context context = getContext();
 
-        //必须设置layout manager，否则adapter的onCreateViewHolder和onBindViewHolder不会调用
+        List<List<BaseBean>> parent_list = new ArrayList<>();
+
+        parent_list.add(getChildList(context));
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        parentRecyclerView.setLayoutManager(layoutManager);
 
-        List<DeviceSensor> list = initSensorList(context);
-
-        sensorAdapter = new SensorAdapter(context, list);
-        recyclerView.setAdapter(sensorAdapter);
-
-        //放在SensorAdapter动画结束后执行，update()中多次notifyDataSetChanged动画会无效 ？
-        //   sensorAdapter.enableAll();
-
-//        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(context,
-//                R.anim.layout_scale_out);
-//        recyclerView.setLayoutAnimation(animationController);
-//        sensorAdapter.notifyDataSetChanged();
-//        recyclerView.scheduleLayoutAnimation();
+        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list);
+        parentRecyclerView.setAdapter(parentAdapter);
 
         return view;
     }
@@ -84,32 +68,38 @@ public class SensorsFragment extends Fragment implements DeviceSensor.Callback {
     public void onDestroyView() {
         Log.d(TAG, "onDestroyView: ");
         super.onDestroyView();
-        if (sensorAdapter != null) {
-            sensorAdapter.disable();
-        }
     }
 
-    private List<DeviceSensor> initSensorList(Context context){
+    private List<BaseBean> getChildList(Context context) {
+
         SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        List<Sensor> support = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        for (Sensor sensor: support){
-            Log.d(TAG, "initSensorList: " + sensor.getName());
-        }
 
-        List<DeviceSensor> list = new ArrayList<>();
-        list.add(new AccelerometerSensor(context, this));
-        list.add(new GravitySensor(context, this));
-        list.add(new LightSensor(context, this));
-        list.add(new ProximitySensor(context, this));
-        list.add(new GyroscopeSensor(context, this));
-        list.add(new MagnetometerSensor(context, this));
-        return list;
+        List<Sensor> all = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        Log.d(TAG, "recycler: " + all.size());
+
+        Sensor light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        Sensor gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        Sensor magnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+        List<BaseBean> child_list = new ArrayList<>();
+        child_list.add(new BaseBean(context.getString(R.string.light_sensor), getInfo(context, light)));
+        child_list.add(new BaseBean(context.getString(R.string.proximity_sensor), getInfo(context, proximity)));
+        child_list.add(new BaseBean(context.getString(R.string.gravity_sensor), getInfo(context, gravity)));
+        child_list.add(new BaseBean(context.getString(R.string.accelerometer_sensor), getInfo(context, accelerometer)));
+        child_list.add(new BaseBean(context.getString(R.string.gyroscope_sensor), getInfo(context, gyroscope)));
+        child_list.add(new BaseBean(context.getString(R.string.magnetometer_sensor), getInfo(context, magnetic)));
+
+        return child_list;
     }
 
-    @Override
-    public void update() {
-        if (sensorAdapter != null) {
-            sensorAdapter.notifyDataSetChanged();
+    private String getInfo(Context context, Sensor sensor) {
+        if (sensor != null) {
+            return context.getString(R.string.has_sensor);
+        } else {
+            return context.getString(R.string.no_sensor);
         }
     }
 }

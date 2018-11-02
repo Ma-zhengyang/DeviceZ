@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.bean.DeviceInfoBean;
+import com.android.mazhengyang.device_z.bean.BaseBean;
 
 import java.util.List;
 
@@ -20,50 +20,55 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-10-25.
  */
 
-public class DeviceInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ChildBaseInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String TAG = DeviceInfoAdapter.class.getSimpleName();
+    private static final String TAG = ChildBaseInfoAdapter.class.getSimpleName();
 
     private Context context;
-    private List<DeviceInfoBean> list;
+    private List<BaseBean> child_list;
 
-    public DeviceInfoAdapter(Context context, List<DeviceInfoBean> list) {
+    public ChildBaseInfoAdapter(Context context, List<BaseBean> child_list) {
         this.context = context;
-        this.list = list;
+        this.child_list = child_list;
+    }
+
+    public void update(List<BaseBean> child_list) {
+        this.child_list = child_list;
+        notifyDataSetChanged();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
+
         View v = LayoutInflater.from(context)
-                .inflate(R.layout.deviceinfo_item, parent, false);
+                .inflate(R.layout.childbaseinfo_item, parent, false);
         DeviceInfoHolder vh = new DeviceInfoHolder(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        //Log.d(TAG, "onBindViewHolder: ");
+        Log.d(TAG, "onBindViewHolder: ");
 
-        DeviceInfoBean bean = list.get(position);
-
-        Log.d(TAG, "onBindViewHolder: " + bean.getTitle());
-
+        BaseBean bean = child_list.get(position);
         ((DeviceInfoHolder) holder).title.setText(bean.getTitle());
         ((DeviceInfoHolder) holder).info.setText(bean.getInfo());
     }
 
-
     @Override
     public int getItemCount() {
-        return list.size();
+        if (child_list == null) {
+            return 0;
+        }
+        return child_list.size();
     }
 
     public class DeviceInfoHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_deviceinfo_title)
+        @BindView(R.id.tv_childbaseinfo_title)
         TextView title;
-        @BindView(R.id.tv_deviceinfo_info)
+        @BindView(R.id.tv_childbaseinfo_info)
         TextView info;
 
         public DeviceInfoHolder(View itemView) {

@@ -1,31 +1,32 @@
 <resources>
     <string name="app_name">硬件检测</string>
-    <string name="navigation_drawer_open">开</string>
-    <string name="navigation_drawer_close">关</string>
 
-    <!--DrawerLayout menu-->
-    <string name="device_info">设备信息</string>
-    <string name="cpu">处理器</string>
-    <string name="sensors">传感器</string>
-    <string name="battery">电池</string>
+    <string name="device_info">系统信息</string>
+    <string name="cpu_info">处理器</string>
+    <string name="sensors_info">传感器</string>
+    <string name="battery_info">电池</string>
     <!--device info-->
-    <string name="device">设备</string>
-    <string name="os">操作系统</string>
-    <string name="screen">屏幕</string>
-    <!--sensors-->
-    <string name="light_sensor">光线</string>
-    <string name="light_sensor_bright">亮</string>
-    <string name="light_sensor_dark">暗</string>
-    <string name="proximity_sensor">距离</string>
-    <string name="proximity_sensor_near">近</string>
-    <string name="proximity_sensor_far">远</string>
-    <string name="gravity_sensor">重力</string>
-    <string name="accelerometer_sensor">加速度</string>
-    <string name="gyroscope_sensor">陀螺仪</string>
-    <string name="magnetometer_sensor">磁力计</string>
-    <string name="sensor_unknow">未知</string>
+    <string name="device_brand">品牌：</string>
+    <string name="device_model">型号：</string>
+    <string name="device_product">产品：</string>
+    <string name="device_board">底层：</string>
+    <string name="hardware">硬件：</string>
+    <string name="os_build">发布版本：</string>
+    <string name="os_build_display">版本包：</string>
+    <string name="sdk">SDK版本：</string>
+    <string name="os_build_id">ID：</string>
+    <string name="os_time">时间：</string>
+    <string name="os_type">类型：</string>
+    <string name="fingerprint">指纹：</string>
+    <string name="tag">标签：</string>
     <!--battery info-->
-    <string name="battery_message">状态： %1$s \n充电方式： %2$s \n温度： %3$f℃ \n电压： %4$.1f mv \n电量： %5$d \n健康状况： %6$s</string>
+    <string name="battery_status">状态：</string>
+    <string name="battery_charge">充电方式：</string>
+    <string name="battery_health">健康状况：</string>
+    <string name="battery_capacity">剩余电量：</string>
+    <string name="battery_voltage">电池电压：</string>
+    <string name="battery_temperature">电池温度：</string>
+    <string name="battery_echnology">电池技术：</string>
     <string name="battery_status_charging">正在充电</string>
     <string name="battery_status_discharging">放电中</string>
     <string name="battery_status_not_charging">未充电</string>
@@ -42,5 +43,16 @@
     <string name="battery_health_unspecified_failure">未知错误</string>
     <string name="battery_health_cold">过冷</string>
     <string name="battery_health_unknow">未知</string>
+
+    <!--sensors-->
+    <string name="light_sensor">光线</string>
+    <string name="proximity_sensor">距离</string>
+    <string name="gravity_sensor">重力</string>
+    <string name="accelerometer_sensor">加速度</string>
+    <string name="gyroscope_sensor">陀螺仪</string>
+    <string name="magnetometer_sensor">磁力计</string>
+    <string name="has_sensor">有</string>
+    <string name="no_sensor">无</string>
+    <string name="unknow_sensor">未知</string>
 
 </resources>
