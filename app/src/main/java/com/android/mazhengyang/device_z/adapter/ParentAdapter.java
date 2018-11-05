@@ -12,8 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.bean.BaseBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,14 +28,14 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final String TAG = ParentAdapter.class.getSimpleName();
 
     private Context context;
-    private List<List<BaseBean>> parent_list;
+    private List<?> parent_list;
 
-    public ParentAdapter(Context context, List<List<BaseBean>> parent_list) {
+    public ParentAdapter(Context context, List<?> lists) {
         this.context = context;
-        this.parent_list = parent_list;
+        this.parent_list = lists;
     }
 
-    public void update(List<List<BaseBean>> parent_list) {
+    public void update(List<?> parent_list) {
         this.parent_list = parent_list;
         notifyDataSetChanged();
     }
@@ -51,13 +51,12 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: ");
 
-        if (parent_list == null) {
+        if (this.parent_list == null) {
             return;
         }
 
-        List<BaseBean> child_list = parent_list.get(position);
+        List<?> child_list = (ArrayList<?>) parent_list.get(position);
 
         RecyclerView.Adapter adapter = ((ParentHolder) holder).childRecyclerView.getAdapter();
         if (adapter == null) {
@@ -67,9 +66,11 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             LinearLayoutManager layoutManager = new LinearLayoutManager(context);
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
-            recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            if(child_list.size() > 1){
+                recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            }
 
-            ChildBaseInfoAdapter childBaseInfoAdapter = new ChildBaseInfoAdapter(context, child_list);
+            ChildAdapter childBaseInfoAdapter = new ChildAdapter(context, child_list);
             recyclerView.setAdapter(childBaseInfoAdapter);
 
             LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(context,
@@ -77,7 +78,7 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             recyclerView.setLayoutAnimation(animationController);
             recyclerView.scheduleLayoutAnimation();
         } else {
-            ((ChildBaseInfoAdapter) adapter).update(child_list);
+            ((ChildAdapter) adapter).update(child_list);
         }
     }
 

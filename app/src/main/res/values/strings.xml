@@ -3,9 +3,10 @@
 
     <string name="device_info">Device Info</string>
     <string name="cpu_info">CPU</string>
+    <string name="screen_info">Screen</string>
     <string name="sensors_info">Sensors</string>
     <string name="battery_info">Battery</string>
-
+    <string name="memory_info">Memory</string>
     <!--device info-->
     <string name="device_brand">Brand:</string>
     <string name="device_model">Model:</string>
@@ -20,6 +21,19 @@
     <string name="os_type">Type:</string>
     <string name="fingerprint">Fingerprint:</string>
     <string name="tag">Tag:</string>
+    <!--cpu info-->
+    <string name="cpu_cur_freq">Cur Freq:</string>
+    <string name="cpu_max_freq">Max Freq:</string>
+    <string name="cpu_min_freq">Min Freq:</string>
+    <string name="cpu_name">Name:</string>
+    <string name="cpu_core_count">Core:</string>
+    <string name="cpu_implementer">Implementer:</string>
+    <string name="cpu_BogoMIPS">BogoMIPS:</string>
+    <string name="cpu_Features">Features:</string>
+    <string name="cpu_architecture">Architecture:</string>
+    <string name="cpu_variant">Variant:</string>
+    <string name="cpu_part">Part:</string>
+    <string name="cpu_revision">Revision:</string>
     <!--battery info-->
     <string name="battery_status">Status:</string>
     <string name="battery_charge">Charge:</string>
@@ -44,20 +58,16 @@
     <string name="battery_health_unspecified_failure">Unspecified failure</string>
     <string name="battery_health_cold">Cold</string>
     <string name="battery_health_unknow">Unknow</string>
-
+    <!--sensors-->
     <string name="light_sensor">Light</string>
-    <string name="light_sensor_bright">bright</string>
-    <string name="light_sensor_dark">dark</string>
-
     <string name="proximity_sensor">Proximity</string>
-    <string name="proximity_sensor_near">near</string>
-    <string name="proximity_sensor_far">far</string>
-
     <string name="gravity_sensor">Gravity</string>
     <string name="accelerometer_sensor">Accelerometer</string>
     <string name="gyroscope_sensor">Gyroscope</string>
     <string name="magnetometer_sensor">Magnetometer</string>
-
-    <string name="sensor_unknow">unknow</string>
+    <string name="barometer_sensor">Barometer</string>
+    <string name="has_sensor">yes</string>
+    <string name="no_sensor">no</string>
+    <string name="unknow_sensor">unknow</string>
 
 </resources>

@@ -10,6 +10,8 @@ import com.android.mazhengyang.device_z.fragments.BatteryFragment;
 import com.android.mazhengyang.device_z.fragments.CPUFragment;
 import com.android.mazhengyang.device_z.fragments.DeviceInfoFragment;
 import com.android.mazhengyang.device_z.fragments.MainFragment;
+import com.android.mazhengyang.device_z.fragments.MemoryFragment;
+import com.android.mazhengyang.device_z.fragments.ScreenFragment;
 import com.android.mazhengyang.device_z.fragments.SensorsFragment;
 
 import butterknife.ButterKnife;
@@ -21,8 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private MainFragment mainFragment;
     private DeviceInfoFragment deviceInfoFragment;
     private CPUFragment cpuFragment;
+    private ScreenFragment screenFragment;
     private SensorsFragment sensorsFragment;
     private BatteryFragment batteryFragment;
+    private MemoryFragment memoryFragment;
     private Fragment currentFragment;
 
     @Override
@@ -57,16 +61,28 @@ public class MainActivity extends AppCompatActivity {
                     fragment = cpuFragment;
                     break;
                 case 2:
+                    if (screenFragment == null) {
+                        screenFragment = new ScreenFragment();
+                    }
+                    fragment = screenFragment;
+                    break;
+                case 3:
                     if (sensorsFragment == null) {
                         sensorsFragment = new SensorsFragment();
                     }
                     fragment = sensorsFragment;
                     break;
-                case 3:
+                case 4:
                     if (batteryFragment == null) {
                         batteryFragment = new BatteryFragment();
                     }
                     fragment = batteryFragment;
+                    break;
+                case 5:
+                    if (memoryFragment == null) {
+                        memoryFragment = new MemoryFragment();
+                    }
+                    fragment = memoryFragment;
                     break;
                 default:
                     break;

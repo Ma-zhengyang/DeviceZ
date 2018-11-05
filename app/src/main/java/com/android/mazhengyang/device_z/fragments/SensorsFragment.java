@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.BaseBean;
+import com.android.mazhengyang.device_z.bean.TitleInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 
 public class SensorsFragment extends Fragment {
 
-    private final String TAG = SensorsFragment.class.getSimpleName();
+    private static final String TAG = SensorsFragment.class.getSimpleName();
 
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
@@ -50,14 +50,12 @@ public class SensorsFragment extends Fragment {
 
         Context context = getContext();
 
-        List<List<BaseBean>> parent_list = new ArrayList<>();
-
+        List<List<TitleInfoBean>> parent_list = new ArrayList<>();
         parent_list.add(getChildList(context));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-
         ParentAdapter parentAdapter = new ParentAdapter(context, parent_list);
         parentRecyclerView.setAdapter(parentAdapter);
 
@@ -70,12 +68,12 @@ public class SensorsFragment extends Fragment {
         super.onDestroyView();
     }
 
-    private List<BaseBean> getChildList(Context context) {
+    private List<TitleInfoBean> getChildList(Context context) {
 
         SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
         List<Sensor> all = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        Log.d(TAG, "recycler: " + all.size());
+        Log.d(TAG, "getChildList: " + all.size());
 
         Sensor light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -83,14 +81,16 @@ public class SensorsFragment extends Fragment {
         Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         Sensor magnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        Sensor barometer = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
-        List<BaseBean> child_list = new ArrayList<>();
-        child_list.add(new BaseBean(context.getString(R.string.light_sensor), getInfo(context, light)));
-        child_list.add(new BaseBean(context.getString(R.string.proximity_sensor), getInfo(context, proximity)));
-        child_list.add(new BaseBean(context.getString(R.string.gravity_sensor), getInfo(context, gravity)));
-        child_list.add(new BaseBean(context.getString(R.string.accelerometer_sensor), getInfo(context, accelerometer)));
-        child_list.add(new BaseBean(context.getString(R.string.gyroscope_sensor), getInfo(context, gyroscope)));
-        child_list.add(new BaseBean(context.getString(R.string.magnetometer_sensor), getInfo(context, magnetic)));
+        List<TitleInfoBean> child_list = new ArrayList<>();
+        child_list.add(new TitleInfoBean(context.getString(R.string.light_sensor), getInfo(context, light)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.proximity_sensor), getInfo(context, proximity)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.gravity_sensor), getInfo(context, gravity)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.accelerometer_sensor), getInfo(context, accelerometer)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.gyroscope_sensor), getInfo(context, gyroscope)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.magnetometer_sensor), getInfo(context, magnetic)));
+        child_list.add(new TitleInfoBean(context.getString(R.string.barometer_sensor), getInfo(context, barometer)));
 
         return child_list;
     }

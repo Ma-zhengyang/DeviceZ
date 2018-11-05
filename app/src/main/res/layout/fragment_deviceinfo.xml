@@ -9,7 +9,7 @@
         android:id="@+id/parent_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:scrollbars="none">
 
     </android.support.v7.widget.RecyclerView>

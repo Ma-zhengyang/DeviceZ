@@ -14,7 +14,7 @@
         android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/tv_childbaseinfo_title"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -22,11 +22,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_childbaseinfo_info"
+            android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/tv_childbaseinfo_title"
+            android:layout_toRightOf="@id/tv_title"
             android:gravity="right" />
 
     </RelativeLayout>

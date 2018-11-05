@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 
 public class MainFragment extends Fragment {
 
-    private final String TAG = MainFragment.class.getSimpleName();
+    private static final String TAG = MainFragment.class.getSimpleName();
 
     private MainAdapter.OnItemClickListener onItemClickListener;
 
@@ -64,8 +64,10 @@ public class MainFragment extends Fragment {
         List<MainBean> list = new ArrayList<>();
         list.add(new MainBean(0, getString(R.string.device_info), resources.getColor(R.color.device_info_color)));
         list.add(new MainBean(1, getString(R.string.cpu_info), resources.getColor(R.color.cpu_info_color)));
-        list.add(new MainBean(2, getString(R.string.sensors_info), resources.getColor(R.color.sensors_info_color)));
-        list.add(new MainBean(3, getString(R.string.battery_info), resources.getColor(R.color.battery_info_color)));
+        list.add(new MainBean(2, getString(R.string.screen_info), resources.getColor(R.color.screen_info_color)));
+        list.add(new MainBean(3, getString(R.string.sensors_info), resources.getColor(R.color.sensors_info_color)));
+        list.add(new MainBean(4, getString(R.string.battery_info), resources.getColor(R.color.battery_info_color)));
+        list.add(new MainBean(5, getString(R.string.memory_info), resources.getColor(R.color.memory_info_color)));
         MainAdapter adapter = new MainAdapter(context, list, onItemClickListener);
         recyclerView.setAdapter(adapter);
 

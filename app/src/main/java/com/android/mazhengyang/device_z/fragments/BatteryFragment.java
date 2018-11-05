@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.BaseBean;
+import com.android.mazhengyang.device_z.bean.TitleInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +31,12 @@ import butterknife.ButterKnife;
 
 public class BatteryFragment extends Fragment {
 
-    private final String TAG = BatteryFragment.class.getSimpleName();
+    private static final String TAG = BatteryFragment.class.getSimpleName();
 
-    private IntentFilter filter;
-    private BatteryReceiver receiver;
-    private boolean isEnabled = false;
+    private IntentFilter intentFilter;
+    private BatteryReceiver batteryReceiver;
 
-    List<List<BaseBean>> parent_list = new ArrayList<>();
+    List<List<TitleInfoBean>> parent_list = new ArrayList<>();
 
     private ParentAdapter parentAdapter;
 
@@ -64,14 +63,15 @@ public class BatteryFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
 
-        parentAdapter = new ParentAdapter(context, parent_list);
+        //执行过一遍，onDestroyView后，parent_list等属性其实已经不是null，会导致adapter中短时间
+        //多次onBindViewHolder，导致动画效果失效，主要还是在onReceive中传入，这里直接传空
+        parentAdapter = new ParentAdapter(context, null/*parent_list*/);
         parentRecyclerView.setAdapter(parentAdapter);
 
-        filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        receiver = new BatteryReceiver();
+        intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        batteryReceiver = new BatteryReceiver();
 
-        context.registerReceiver(receiver, filter);
-        isEnabled = true;
+        context.registerReceiver(batteryReceiver, intentFilter);
 
         return view;
     }
@@ -80,34 +80,29 @@ public class BatteryFragment extends Fragment {
     public void onDestroyView() {
         Log.d(TAG, "onDestroyView: ");
         super.onDestroyView();
-        if (isEnabled) {
-            getContext().unregisterReceiver(receiver);
-            isEnabled = false;
-        }
+        getContext().unregisterReceiver(batteryReceiver);
     }
 
     public class BatteryReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
             Log.d(TAG, "onReceive: ");
+            List<TitleInfoBean> child_list1 = new ArrayList<>();
+            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_status), getStatus(context, intent)));
+            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_charge), getCharge(context, intent)));
+            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_health), getHealth(context, intent)));
 
-            List<BaseBean> child_list1 = new ArrayList<>();
-            child_list1.add(new BaseBean(context.getString(R.string.battery_status), getStatus(context, intent)));
-            child_list1.add(new BaseBean(context.getString(R.string.battery_charge), getCharge(context, intent)));
-            child_list1.add(new BaseBean(context.getString(R.string.battery_health), getHealth(context, intent)));
-
-            List<BaseBean> child_list2 = new ArrayList<>();
+            List<TitleInfoBean> child_list2 = new ArrayList<>();
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0); //当前电量
             int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10;//温度
             int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);//电压
             String technology = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);//电池技术
 
-            child_list2.add(new BaseBean(context.getString(R.string.battery_capacity), String.valueOf(level).concat("%")));
-            child_list2.add(new BaseBean(context.getString(R.string.battery_voltage), String.valueOf(voltage).concat("mv")));
-            child_list2.add(new BaseBean(context.getString(R.string.battery_temperature), String.valueOf(temperature).concat("℃")));
-            child_list2.add(new BaseBean(context.getString(R.string.battery_echnology), String.valueOf(technology)));
+            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_capacity), String.valueOf(level).concat("%")));
+            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_voltage), String.valueOf(voltage).concat("mv")));
+            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_temperature), String.valueOf(temperature).concat("℃")));
+            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_echnology), String.valueOf(technology)));
 
             parent_list.clear();
             parent_list.add(child_list1);
@@ -116,8 +111,8 @@ public class BatteryFragment extends Fragment {
         }
     }
 
+    //充电状态
     private String getStatus(Context context, Intent intent) {
-        //充电状态
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         switch (status) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
@@ -134,8 +129,8 @@ public class BatteryFragment extends Fragment {
         }
     }
 
+    //充电方式
     private String getCharge(Context context, Intent intent) {
-        //充电方式
         int charge = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         switch (charge) {
             case BatteryManager.BATTERY_PLUGGED_AC:
@@ -149,8 +144,8 @@ public class BatteryFragment extends Fragment {
         }
     }
 
+    //健康状态
     private String getHealth(Context context, Intent intent) {
-        //健康状态
         int health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
         switch (health) {
             case BatteryManager.BATTERY_HEALTH_GOOD:

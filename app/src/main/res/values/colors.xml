@@ -8,10 +8,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="light_yellow">#33ffff00</color>
+    <color name="grey71">#77b5b5b5</color>
 
     <color name="device_info_color">#AAEE3B3B</color>
     <color name="cpu_info_color">#AA00008B</color>
-    <color name="sensors_info_color">#AA548B54</color>
+    <color name="screen_info_color">#AA548B54</color>
+    <color name="sensors_info_color">#AA8DB6CD</color>
     <color name="battery_info_color">#AAFF7F24</color>
+    <color name="memory_info_color">#AAEEAEEE</color>
 
 </resources>

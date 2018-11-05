@@ -1,15 +1,15 @@
 package com.android.mazhengyang.device_z.bean;
 
 /**
- * Created by mazhengyang on 18-10-25.
+ * Created by mazhengyang on 18-11-5.
  */
 
-public class BaseBean {
+public class TitleInfoBean {
 
     private String title;
     private String info;
 
-    public BaseBean(String title, String info) {
+    public TitleInfoBean(String title, String info) {
         this.title = title;
         this.info = info;
     }
