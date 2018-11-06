@@ -5,9 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="5dp"
-    android:orientation="vertical"
-    app:cardCornerRadius="10dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_title"
@@ -53,7 +51,7 @@
                 android:id="@+id/tv_total_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/memory_free" />
+                android:text="@string/memory_total" />
 
             <TextView
                 android:id="@+id/tv_total_value"

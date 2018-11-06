@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.TitleInfoBean;
+import com.android.mazhengyang.device_z.bean.OnlyTitleInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +27,9 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-10-19.
  */
 
-public class DeviceInfoFragment extends Fragment {
+public class SystemFragment extends Fragment {
 
-    private static final String TAG = DeviceInfoFragment.class.getSimpleName();
+    private static final String TAG = SystemFragment.class.getSimpleName();
 
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
@@ -56,7 +56,7 @@ public class DeviceInfoFragment extends Fragment {
 
         Context context = getContext();
 
-        List<List<TitleInfoBean>> parent_list = new ArrayList<>();
+        List<List<OnlyTitleInfoBean>> parent_list = new ArrayList<>();
         parent_list.add(getChildList1(context));
         parent_list.add(getChildList2(context));
 
@@ -70,29 +70,28 @@ public class DeviceInfoFragment extends Fragment {
         return view;
     }
 
-    private List<TitleInfoBean> getChildList1(Context context) {
+    private List<OnlyTitleInfoBean> getChildList1(Context context) {
 
-        List<TitleInfoBean> child_list = new ArrayList<>();
-        child_list.add(new TitleInfoBean(context.getString(R.string.device_brand), android.os.Build.BRAND));
-        child_list.add(new TitleInfoBean(context.getString(R.string.device_model), android.os.Build.MODEL));
-        child_list.add(new TitleInfoBean(context.getString(R.string.device_product), android.os.Build.PRODUCT));
+        List<OnlyTitleInfoBean> child_list = new ArrayList<>();
+        child_list.add(new OnlyTitleInfoBean(R.string.device_brand, android.os.Build.BRAND));
+        child_list.add(new OnlyTitleInfoBean(R.string.device_model, android.os.Build.MODEL));
+        child_list.add(new OnlyTitleInfoBean(R.string.device_product, android.os.Build.PRODUCT));
 
         return child_list;
     }
 
-    private List<TitleInfoBean> getChildList2(Context context) {
+    private List<OnlyTitleInfoBean> getChildList2(Context context) {
 
-        List<TitleInfoBean> child_list = new ArrayList<>();
-        child_list.add(new TitleInfoBean(context.getString(R.string.device_board), android.os.Build.BOARD));
-        child_list.add(new TitleInfoBean(context.getString(R.string.hardware), Build.HARDWARE));
-        child_list.add(new TitleInfoBean(context.getString(R.string.os_build), android.os.Build.VERSION.RELEASE));
-        child_list.add(new TitleInfoBean(context.getString(R.string.os_build_display), android.os.Build.DISPLAY));
-        child_list.add(new TitleInfoBean(context.getString(R.string.sdk), Build.VERSION.SDK));
-        child_list.add(new TitleInfoBean(context.getString(R.string.os_build_id), android.os.Build.ID));
-       // child_list.add(new TitleInfoBean(context.getString(R.string.os_time), android.os.Build.TIME));
-        child_list.add(new TitleInfoBean(context.getString(R.string.os_type), android.os.Build.TYPE));
-        child_list.add(new TitleInfoBean(context.getString(R.string.fingerprint), android.os.Build.FINGERPRINT));
-        child_list.add(new TitleInfoBean(context.getString(R.string.tag), Build.TAGS));
+        List<OnlyTitleInfoBean> child_list = new ArrayList<>();
+        child_list.add(new OnlyTitleInfoBean(R.string.device_board, android.os.Build.BOARD));
+        child_list.add(new OnlyTitleInfoBean(R.string.hardware, Build.HARDWARE));
+        child_list.add(new OnlyTitleInfoBean(R.string.os_build, android.os.Build.VERSION.RELEASE));
+        child_list.add(new OnlyTitleInfoBean(R.string.os_build_display, android.os.Build.DISPLAY));
+        child_list.add(new OnlyTitleInfoBean(R.string.sdk, Build.VERSION.SDK));
+        child_list.add(new OnlyTitleInfoBean(R.string.os_build_id, android.os.Build.ID));
+        child_list.add(new OnlyTitleInfoBean(R.string.os_type, android.os.Build.TYPE));
+        child_list.add(new OnlyTitleInfoBean(R.string.fingerprint, android.os.Build.FINGERPRINT));
+        child_list.add(new OnlyTitleInfoBean(R.string.tag, Build.TAGS));
 
         return child_list;
     }

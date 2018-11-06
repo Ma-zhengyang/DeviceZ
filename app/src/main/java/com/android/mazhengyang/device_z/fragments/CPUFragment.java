@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.TitleInfoBean;
+import com.android.mazhengyang.device_z.bean.OnlyTitleInfoBean;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -86,7 +86,7 @@ public class CPUFragment extends Fragment {
             tvCpuMinFreq.setText(String.format("%d MHz", Integer.valueOf(minCpuFreq) / 1000));
         }
 
-        List<List<TitleInfoBean>> parent_list = new ArrayList<>();
+        List<List<OnlyTitleInfoBean>> parent_list = new ArrayList<>();
         parent_list.add(getCpuInfo(context, CPUINFO));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -116,20 +116,20 @@ public class CPUFragment extends Fragment {
         return sb.toString();
     }
 
-    private List<TitleInfoBean> getCpuInfo(Context context, String path) {
-        List<TitleInfoBean> child_list = new ArrayList<>();
+    private List<OnlyTitleInfoBean> getCpuInfo(Context context, String path) {
+        List<OnlyTitleInfoBean> child_list = new ArrayList<>();
 
         int count = 0;
 
-        TitleInfoBean cpu_name = new TitleInfoBean(context.getString(R.string.cpu_name), "");
-        TitleInfoBean cpu_core_count = new TitleInfoBean(context.getString(R.string.cpu_core_count), "");
-        TitleInfoBean cpu_implementer = new TitleInfoBean(context.getString(R.string.cpu_implementer), "");
-        TitleInfoBean cpu_BogoMIPS = new TitleInfoBean(context.getString(R.string.cpu_BogoMIPS), "");
-        TitleInfoBean cpu_Features = new TitleInfoBean(context.getString(R.string.cpu_Features), "");
-        TitleInfoBean cpu_architecture = new TitleInfoBean(context.getString(R.string.cpu_architecture), "");
-        TitleInfoBean cpu_variant = new TitleInfoBean(context.getString(R.string.cpu_variant), "");
-        TitleInfoBean cpu_part = new TitleInfoBean(context.getString(R.string.cpu_part), "");
-        TitleInfoBean cpu_revision = new TitleInfoBean(context.getString(R.string.cpu_revision), "");
+        OnlyTitleInfoBean cpu_name = new OnlyTitleInfoBean(R.string.cpu_name, "");
+        OnlyTitleInfoBean cpu_core_count = new OnlyTitleInfoBean(R.string.cpu_core_count, "");
+        OnlyTitleInfoBean cpu_implementer = new OnlyTitleInfoBean(R.string.cpu_implementer, "");
+        OnlyTitleInfoBean cpu_BogoMIPS = new OnlyTitleInfoBean(R.string.cpu_BogoMIPS, "");
+        OnlyTitleInfoBean cpu_Features = new OnlyTitleInfoBean(R.string.cpu_Features, "");
+        OnlyTitleInfoBean cpu_architecture = new OnlyTitleInfoBean(R.string.cpu_architecture, "");
+        OnlyTitleInfoBean cpu_variant = new OnlyTitleInfoBean(R.string.cpu_variant, "");
+        OnlyTitleInfoBean cpu_part = new OnlyTitleInfoBean(R.string.cpu_part, "");
+        OnlyTitleInfoBean cpu_revision = new OnlyTitleInfoBean(R.string.cpu_revision, "");
         child_list.add(cpu_name);
         child_list.add(cpu_core_count);
         child_list.add(cpu_implementer);

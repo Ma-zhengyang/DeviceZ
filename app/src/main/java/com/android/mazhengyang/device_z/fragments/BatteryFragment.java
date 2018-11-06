@@ -14,10 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.TitleInfoBean;
+import com.android.mazhengyang.device_z.bean.OnlyTitleInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,16 @@ public class BatteryFragment extends Fragment {
     private IntentFilter intentFilter;
     private BatteryReceiver batteryReceiver;
 
-    List<List<TitleInfoBean>> parent_list = new ArrayList<>();
+    List<List<OnlyTitleInfoBean>> parent_list = new ArrayList<>();
 
     private ParentAdapter parentAdapter;
 
+    @BindView(R.id.hundreds_digit)
+    ImageView hundredsDigit;
+    @BindView(R.id.tens_digit)
+    ImageView tensDigit;
+    @BindView(R.id.units_digit)
+    ImageView unitsDigit;
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
 
@@ -58,6 +65,10 @@ public class BatteryFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         Context context = getContext();
+
+        hundredsDigit.setVisibility(View.INVISIBLE);
+        tensDigit.setVisibility(View.INVISIBLE);
+        unitsDigit.setVisibility(View.INVISIBLE);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -79,6 +90,7 @@ public class BatteryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         Log.d(TAG, "onDestroyView: ");
+
         super.onDestroyView();
         getContext().unregisterReceiver(batteryReceiver);
     }
@@ -88,21 +100,24 @@ public class BatteryFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: ");
-            List<TitleInfoBean> child_list1 = new ArrayList<>();
-            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_status), getStatus(context, intent)));
-            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_charge), getCharge(context, intent)));
-            child_list1.add(new TitleInfoBean(context.getString(R.string.battery_health), getHealth(context, intent)));
 
-            List<TitleInfoBean> child_list2 = new ArrayList<>();
+            List<OnlyTitleInfoBean> child_list1 = new ArrayList<>();
+            child_list1.add(new OnlyTitleInfoBean(R.string.battery_status, getStatus(context, intent)));
+            child_list1.add(new OnlyTitleInfoBean(R.string.battery_charge, getCharge(context, intent)));
+            child_list1.add(new OnlyTitleInfoBean(R.string.battery_health, getHealth(context, intent)));
+
+            List<OnlyTitleInfoBean> child_list2 = new ArrayList<>();
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0); //当前电量
             int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10;//温度
             int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);//电压
             String technology = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);//电池技术
 
-            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_capacity), String.valueOf(level).concat("%")));
-            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_voltage), String.valueOf(voltage).concat("mv")));
-            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_temperature), String.valueOf(temperature).concat("℃")));
-            child_list2.add(new TitleInfoBean(context.getString(R.string.battery_echnology), String.valueOf(technology)));
+            updateLevelView(level);
+
+            child_list2.add(new OnlyTitleInfoBean(R.string.battery_capacity, String.valueOf(level).concat("%")));
+            child_list2.add(new OnlyTitleInfoBean(R.string.battery_voltage, String.valueOf(voltage).concat("mv")));
+            child_list2.add(new OnlyTitleInfoBean(R.string.battery_temperature, String.valueOf(temperature).concat("℃")));
+            child_list2.add(new OnlyTitleInfoBean(R.string.battery_echnology, String.valueOf(technology)));
 
             parent_list.clear();
             parent_list.add(child_list1);
@@ -163,6 +178,65 @@ public class BatteryFragment extends Fragment {
             case BatteryManager.BATTERY_HEALTH_UNKNOWN:
             default:
                 return context.getString(R.string.battery_health_unknow);
+        }
+    }
+
+    private void updateLevelView(int level) {
+        int hundreds = level / 100;
+        int tens = level / 10 % 10;
+        int units = level % 10;
+
+        int hundredsRes = getRes(hundreds);
+        int tensRes = getRes(tens);
+        int unitsRes = getRes(units);
+
+        if (hundreds != 0 && hundredsRes != -1) {
+            hundredsDigit.setImageResource(hundredsRes);
+            hundredsDigit.setVisibility(View.VISIBLE);
+        } else {
+            hundredsDigit.setVisibility(View.INVISIBLE);
+        }
+
+        if (tensRes != 0 && tensRes != -1) {
+            tensDigit.setImageResource(tensRes);
+            tensDigit.setVisibility(View.VISIBLE);
+        } else {
+            tensDigit.setVisibility(View.INVISIBLE);
+        }
+
+        if (unitsRes != -1) {
+            unitsDigit.setImageResource(unitsRes);
+            unitsDigit.setVisibility(View.VISIBLE);
+        } else {
+            unitsDigit.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+    private int getRes(int value) {
+        switch (value) {
+            case 0:
+                return R.mipmap.big_number_0;
+            case 1:
+                return R.mipmap.big_number_1;
+            case 2:
+                return R.mipmap.big_number_2;
+            case 3:
+                return R.mipmap.big_number_3;
+            case 4:
+                return R.mipmap.big_number_4;
+            case 5:
+                return R.mipmap.big_number_5;
+            case 6:
+                return R.mipmap.big_number_6;
+            case 7:
+                return R.mipmap.big_number_7;
+            case 8:
+                return R.mipmap.big_number_8;
+            case 9:
+                return R.mipmap.big_number_9;
+            default:
+                return -1;
         }
     }
 }

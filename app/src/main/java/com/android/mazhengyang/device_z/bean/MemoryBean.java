@@ -6,22 +6,22 @@ package com.android.mazhengyang.device_z.bean;
 
 public class MemoryBean {
 
-    private String title;
+    private int titleRes;
     private Long freeValue;
     private Long totalValue;
 
-    public MemoryBean(String title, Long freeValue, Long totalValue) {
-        this.title = title;
+    public MemoryBean(int titleRes, Long freeValue, Long totalValue) {
+        this.titleRes = titleRes;
         this.freeValue = freeValue;
         this.totalValue = totalValue;
     }
 
-    public String getTitle() {
-        return title;
+    public int getTitleRes() {
+        return titleRes;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitleRes(int titleRes) {
+        this.titleRes = titleRes;
     }
 
     public Long getFreeValue() {

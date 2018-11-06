@@ -1,13 +1,29 @@
 <resources>
     <string name="app_name">Device-Z</string>
 
-    <string name="device_info">Device Info</string>
+    <string name="system_info">System Info</string>
     <string name="cpu_info">CPU</string>
     <string name="screen_info">Screen</string>
-    <string name="sensors_info">Sensors</string>
     <string name="battery_info">Battery</string>
     <string name="memory_info">Memory</string>
-    <!--device info-->
+    <string name="tools_info">Tools</string>
+    <!--tools-->
+    <string name="torch">Torch</string>
+    <string name="compass">Compass</string>
+    <string name="sensors">Sensors</string>
+    <!--screen-->
+    <string name="screen_bad_pixel_detection">Bad pixel</string>
+    <string name="screen_edge_detection">Edge</string>
+    <string name="screen_multi_touch_detection">Multi touch</string>
+    <string name="screen_bad_pixel_detection_des">Dead pixel</string>
+    <string name="screen_edge_detection_des">Edge</string>
+    <string name="screen_multi_touch_detection_des">Multi touch</string>
+    <string name="screen_start">start</string>
+    <string name="screen_dpi">DPI:</string>
+    <string name="screen_dpi_value">%1$dpixel/inch</string>
+    <string name="screen_resolution">resolution:</string>
+    <string name="screen_density">density:</string>
+    <!--system info-->
     <string name="device_brand">Brand:</string>
     <string name="device_model">Model:</string>
     <string name="device_product">Product:</string>
@@ -58,6 +74,7 @@
     <string name="battery_health_unspecified_failure">Unspecified failure</string>
     <string name="battery_health_cold">Cold</string>
     <string name="battery_health_unknow">Unknow</string>
+    <string name="battery_label_text">Capacity rate</string>
     <!--sensors-->
     <string name="light_sensor">Light</string>
     <string name="proximity_sensor">Proximity</string>
@@ -66,8 +83,10 @@
     <string name="gyroscope_sensor">Gyroscope</string>
     <string name="magnetometer_sensor">Magnetometer</string>
     <string name="barometer_sensor">Barometer</string>
-    <string name="has_sensor">yes</string>
-    <string name="no_sensor">no</string>
     <string name="unknow_sensor">unknow</string>
+    <!--memory-->
+    <string name="memory_capacity">Capacity</string>
+    <string name="memory_free">Free:</string>
+    <string name="memory_total">Total:</string>
 
 </resources>

@@ -84,7 +84,7 @@ public class MemoryFragment extends Fragment {
         //Available rom memory
         long availableBlocks = stat.getAvailableBlocksLong();
         long available = blockSize * availableBlocks / 1024 / 1024;
-        child_list.add(new MemoryBean(context.getString(R.string.memory_capacity), available, total));
+        child_list.add(new MemoryBean(R.string.memory_capacity, available, total));
 
         return child_list;
     }

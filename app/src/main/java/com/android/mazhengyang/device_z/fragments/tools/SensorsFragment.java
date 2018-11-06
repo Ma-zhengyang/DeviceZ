@@ -1,4 +1,4 @@
-package com.android.mazhengyang.device_z.fragments;
+package com.android.mazhengyang.device_z.fragments.tools;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
-import com.android.mazhengyang.device_z.bean.TitleInfoBean;
+import com.android.mazhengyang.device_z.bean.SensorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class SensorsFragment extends Fragment {
 
         Context context = getContext();
 
-        List<List<TitleInfoBean>> parent_list = new ArrayList<>();
+        List<List<SensorBean>> parent_list = new ArrayList<>();
         parent_list.add(getChildList(context));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -68,7 +68,7 @@ public class SensorsFragment extends Fragment {
         super.onDestroyView();
     }
 
-    private List<TitleInfoBean> getChildList(Context context) {
+    private List<SensorBean> getChildList(Context context) {
 
         SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
@@ -83,23 +83,23 @@ public class SensorsFragment extends Fragment {
         Sensor magnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         Sensor barometer = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
-        List<TitleInfoBean> child_list = new ArrayList<>();
-        child_list.add(new TitleInfoBean(context.getString(R.string.light_sensor), getInfo(context, light)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.proximity_sensor), getInfo(context, proximity)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.gravity_sensor), getInfo(context, gravity)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.accelerometer_sensor), getInfo(context, accelerometer)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.gyroscope_sensor), getInfo(context, gyroscope)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.magnetometer_sensor), getInfo(context, magnetic)));
-        child_list.add(new TitleInfoBean(context.getString(R.string.barometer_sensor), getInfo(context, barometer)));
+        List<SensorBean> child_list = new ArrayList<>();
+        child_list.add(new SensorBean(R.string.light_sensor, getRes(light)));
+        child_list.add(new SensorBean(R.string.proximity_sensor, getRes(proximity)));
+        child_list.add(new SensorBean(R.string.gravity_sensor, getRes(gravity)));
+        child_list.add(new SensorBean(R.string.accelerometer_sensor, getRes(accelerometer)));
+        child_list.add(new SensorBean(R.string.gyroscope_sensor, getRes(gyroscope)));
+        child_list.add(new SensorBean(R.string.magnetometer_sensor, getRes(magnetic)));
+        child_list.add(new SensorBean(R.string.barometer_sensor, getRes(barometer)));
 
         return child_list;
     }
 
-    private String getInfo(Context context, Sensor sensor) {
+    private int getRes(Sensor sensor) {
         if (sensor != null) {
-            return context.getString(R.string.has_sensor);
+            return R.drawable.sensor_yes;
         } else {
-            return context.getString(R.string.no_sensor);
+            return R.drawable.sensor_no;
         }
     }
 }

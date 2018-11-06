@@ -1,13 +1,29 @@
 <resources>
     <string name="app_name">硬件检测</string>
 
-    <string name="device_info">系统信息</string>
+    <string name="system_info">系统信息</string>
     <string name="cpu_info">处理器</string>
     <string name="screen_info">屏幕</string>
-    <string name="sensors_info">传感器</string>
     <string name="battery_info">电池</string>
     <string name="memory_info">磁盘空间</string>
-    <!--device info-->
+    <string name="tools_info">工具箱</string>
+    <!--tools-->
+    <string name="torch">手电筒</string>
+    <string name="compass">指南针</string>
+    <string name="sensors">传感器</string>
+    <!--screen-->
+    <string name="screen_bad_pixel_detection">屏幕坏点检测</string>
+    <string name="screen_edge_detection">屏幕边缘检测</string>
+    <string name="screen_multi_touch_detection">多点触控检测</string>
+    <string name="screen_bad_pixel_detection_des">通过触摸红、绿、蓝等纯色背景检查屏幕是否存在小亮点，存在小亮点即为坏点</string>
+    <string name="screen_edge_detection_des">通过用纯色涂抹屏幕边缘，直到边缘均匀涂满，观察边缘是否能够涂满检测边缘完整性</string>
+    <string name="screen_multi_touch_detection_des">通过多点触摸检测出系统支持几点触控，将尽量多的手指同时按到屏幕上</string>
+    <string name="screen_dpi">DPI：</string>
+    <string name="screen_dpi_value">%1$d像素/英寸</string>
+    <string name="screen_resolution">分辨率：</string>
+    <string name="screen_density">屏幕密度：</string>
+    <string name="screen_start">开始</string>
+    <!--system info-->
     <string name="device_brand">品牌：</string>
     <string name="device_model">型号：</string>
     <string name="device_product">产品：</string>
@@ -21,11 +37,6 @@
     <string name="os_type">类型：</string>
     <string name="fingerprint">指纹：</string>
     <string name="tag">标签：</string>
-    <!--screen info-->
-    <string name="screen_dpi">DPI：</string>
-    <string name="screen_dpi_value">%1$d像素/英寸</string>
-    <string name="screen_resolution">分辨率：</string>
-    <string name="screen_density">屏幕密度：</string>
     <!--cpu info-->
     <string name="cpu_cur_freq">实时频率：</string>
     <string name="cpu_max_freq">最大频率：</string>
@@ -42,7 +53,7 @@
     <!--battery info-->
     <string name="battery_status">电池状态：</string>
     <string name="battery_charge">电源类型：</string>
-    <string name="battery_health">电池健康：</string>
+    <string name="battery_health">健康状态：</string>
     <string name="battery_capacity">剩余电量：</string>
     <string name="battery_voltage">电池电压：</string>
     <string name="battery_temperature">电池温度：</string>
@@ -51,11 +62,11 @@
     <string name="battery_status_discharging">放电中</string>
     <string name="battery_status_not_charging">未在充电</string>
     <string name="battery_status_full">已充满</string>
-    <string name="battery_status_unknown">无供电电源</string>
+    <string name="battery_status_unknown">未知</string>
     <string name="battery_charging_ac">充电器</string>
     <string name="battery_charging_usb">USB</string>
     <string name="battery_charging_wireless">无线</string>
-    <string name="battery_charging_unknow">未知</string>
+    <string name="battery_charging_unknow">无供电电源</string>
     <string name="battery_health_good">健康</string>
     <string name="battery_health_over_heat">过热</string>
     <string name="battery_health_dead">电压偏低</string>
@@ -63,6 +74,7 @@
     <string name="battery_health_unspecified_failure">未知错误</string>
     <string name="battery_health_cold">过冷</string>
     <string name="battery_health_unknow">未知</string>
+    <string name="battery_label_text">剩余电量</string>
     <!--sensors-->
     <string name="light_sensor">光线传感器</string>
     <string name="proximity_sensor">距离传感器</string>
@@ -71,8 +83,6 @@
     <string name="gyroscope_sensor">陀螺仪传感器</string>
     <string name="magnetometer_sensor">电磁传感器</string>
     <string name="barometer_sensor">压力传感器</string>
-    <string name="has_sensor">有</string>
-    <string name="no_sensor">无</string>
     <string name="unknow_sensor">未知</string>
     <!--memory-->
     <string name="memory_capacity">手机容量</string>

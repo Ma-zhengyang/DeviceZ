@@ -4,22 +4,22 @@ package com.android.mazhengyang.device_z.bean;
  * Created by mazhengyang on 18-11-5.
  */
 
-public class TitleInfoBean {
+public class OnlyTitleInfoBean {
 
-    private String title;
+    private int titleRes;
     private String info;
 
-    public TitleInfoBean(String title, String info) {
-        this.title = title;
+    public OnlyTitleInfoBean(int titleRes, String info) {
+        this.titleRes = titleRes;
         this.info = info;
     }
 
-    public String getTitle() {
-        return title;
+    public int getTitleRes() {
+        return titleRes;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitleRes(int titleRes) {
+        this.titleRes = titleRes;
     }
 
     public String getInfo() {

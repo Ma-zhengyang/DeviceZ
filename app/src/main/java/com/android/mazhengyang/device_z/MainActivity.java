@@ -8,11 +8,14 @@ import android.util.Log;
 import com.android.mazhengyang.device_z.adapter.MainAdapter;
 import com.android.mazhengyang.device_z.fragments.BatteryFragment;
 import com.android.mazhengyang.device_z.fragments.CPUFragment;
-import com.android.mazhengyang.device_z.fragments.DeviceInfoFragment;
 import com.android.mazhengyang.device_z.fragments.MainFragment;
 import com.android.mazhengyang.device_z.fragments.MemoryFragment;
 import com.android.mazhengyang.device_z.fragments.ScreenFragment;
-import com.android.mazhengyang.device_z.fragments.SensorsFragment;
+import com.android.mazhengyang.device_z.fragments.SystemFragment;
+import com.android.mazhengyang.device_z.fragments.ToolMainFragment;
+import com.android.mazhengyang.device_z.fragments.tools.CompassFragment;
+import com.android.mazhengyang.device_z.fragments.tools.SensorsFragment;
+import com.android.mazhengyang.device_z.fragments.tools.TorchFragment;
 
 import butterknife.ButterKnife;
 
@@ -21,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
 
     private MainFragment mainFragment;
-    private DeviceInfoFragment deviceInfoFragment;
+    private SystemFragment deviceInfoFragment;
     private CPUFragment cpuFragment;
     private ScreenFragment screenFragment;
-    private SensorsFragment sensorsFragment;
     private BatteryFragment batteryFragment;
     private MemoryFragment memoryFragment;
+    private ToolMainFragment toolMainFragment;
+    private TorchFragment torchFragment;
+    private CompassFragment compassFragment;
+    private SensorsFragment sensorsFragment;
     private Fragment currentFragment;
 
     @Override
@@ -50,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             switch (id) {
                 case 0:
                     if (deviceInfoFragment == null) {
-                        deviceInfoFragment = new DeviceInfoFragment();
+                        deviceInfoFragment = new SystemFragment();
                     }
                     fragment = deviceInfoFragment;
                     break;
@@ -67,22 +73,55 @@ public class MainActivity extends AppCompatActivity {
                     fragment = screenFragment;
                     break;
                 case 3:
-                    if (sensorsFragment == null) {
-                        sensorsFragment = new SensorsFragment();
-                    }
-                    fragment = sensorsFragment;
-                    break;
-                case 4:
                     if (batteryFragment == null) {
                         batteryFragment = new BatteryFragment();
                     }
                     fragment = batteryFragment;
                     break;
-                case 5:
+                case 4:
                     if (memoryFragment == null) {
                         memoryFragment = new MemoryFragment();
                     }
                     fragment = memoryFragment;
+                    break;
+                case 5:
+                    if (toolMainFragment == null) {
+                        toolMainFragment = new ToolMainFragment();
+                        toolMainFragment.setListener(tool_listener);
+                    }
+                    fragment = toolMainFragment;
+                    break;
+                default:
+                    break;
+            }
+
+            showFragment(fragment);
+        }
+    };
+
+    private MainAdapter.OnItemClickListener tool_listener = new MainAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(int id) {
+
+            Fragment fragment = null;
+            switch (id) {
+                case 0:
+                    if (torchFragment == null) {
+                        torchFragment = new TorchFragment();
+                    }
+                    fragment = torchFragment;
+                    break;
+                case 1:
+                    if (compassFragment == null) {
+                        compassFragment = new CompassFragment();
+                    }
+                    fragment = compassFragment;
+                    break;
+                case 2:
+                    if (sensorsFragment == null) {
+                        sensorsFragment = new SensorsFragment();
+                    }
+                    fragment = sensorsFragment;
                     break;
                 default:
                     break;
@@ -109,10 +148,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (currentFragment != mainFragment) {
-            showFragment(mainFragment);
+            if (isTool()) {
+                showFragment(toolMainFragment);
+            } else {
+                showFragment(mainFragment);
+            }
         } else {
             super.onBackPressed();
         }
+    }
+
+    private boolean isTool() {
+        return currentFragment == torchFragment
+                || currentFragment == compassFragment
+                || currentFragment == sensorsFragment;
     }
 
 }

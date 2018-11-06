@@ -22,12 +22,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by mazhengyang on 18-11-2.
+ * Created by mazhengyang on 18-11-6.
  */
 
-public class MainFragment extends Fragment {
+public class ToolMainFragment extends Fragment {
 
-    private static final String TAG = MainFragment.class.getSimpleName();
+    private static final String TAG = ToolMainFragment.class.getSimpleName();
+
 
     private MainAdapter.OnItemClickListener onItemClickListener;
 
@@ -49,7 +50,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
 
-        View view = inflater.inflate(R.layout.fragment_main, null);
+        View view = inflater.inflate(R.layout.fragment_tool_main, null);
         ButterKnife.bind(this, view);
 
         Context context = getContext();
@@ -60,29 +61,17 @@ public class MainFragment extends Fragment {
 
         List<MainBean> list = new ArrayList<>();
         list.add(new MainBean(
-                R.color.system_info_color,
-                R.drawable.icon_system,
-                R.string.system_info, 0));
+                R.color.tool_torch_color,
+                R.drawable.icon_tool_torch,
+                R.string.torch, 0));
         list.add(new MainBean(
-                R.color.cpu_info_color,
-                R.drawable.icon_cpu,
-                R.string.cpu_info, 1));
+                R.color.tool_compass_color,
+                R.drawable.icon_tool_compass,
+                R.string.compass, 1));
         list.add(new MainBean(
-                R.color.screen_info_color,
-                R.drawable.icon_screen,
-                R.string.screen_info, 2));
-        list.add(new MainBean(
-                R.color.battery_info_color,
-                R.drawable.icon_battery,
-                R.string.battery_info, 3));
-        list.add(new MainBean(
-                R.color.memory_info_color,
-                R.drawable.icon_memory,
-                R.string.memory_info, 4));
-        list.add(new MainBean(
-                R.color.tools_info_color,
-                R.drawable.icon_tools,
-                R.string.tools_info, 5));
+                R.color.tool_sensor_color,
+                R.drawable.icon_tool_sensor,
+                R.string.sensors, 2));
 
         MainAdapter adapter = new MainAdapter(context, list, onItemClickListener);
         recyclerView.setAdapter(adapter);
@@ -95,5 +84,4 @@ public class MainFragment extends Fragment {
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
     }
-
 }
