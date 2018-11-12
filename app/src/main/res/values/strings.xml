@@ -54,7 +54,6 @@
     <string name="battery_status">Status:</string>
     <string name="battery_charge">Charge:</string>
     <string name="battery_health">Health:</string>
-    <string name="battery_capacity">Capacity rate:</string>
     <string name="battery_voltage">Voltage:</string>
     <string name="battery_temperature">Temperature:</string>
     <string name="battery_echnology">Echnology:</string>
@@ -85,8 +84,12 @@
     <string name="barometer_sensor">Barometer</string>
     <string name="unknow_sensor">unknow</string>
     <!--memory-->
-    <string name="memory_capacity">Capacity</string>
+    <string name="since_boot_time_title">Since boot:</string>
+    <string name="since_boot_time_value">%1$ds</string>
+    <string name="memory_capacity_rom">ROM</string>
     <string name="memory_free">Free:</string>
     <string name="memory_total">Total:</string>
+    <!--other-->
+    <string name="percent">%</string>
 
 </resources>

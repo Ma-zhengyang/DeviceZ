@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,11 +17,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
 import com.android.mazhengyang.device_z.bean.OnlyTitleInfoBean;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +42,9 @@ public class BatteryFragment extends Fragment {
 
     private static final String TAG = BatteryFragment.class.getSimpleName();
 
+    private Handler handler = new Handler();
+    private static final long INTERVAL = 1000;
+
     private IntentFilter intentFilter;
     private BatteryReceiver batteryReceiver;
 
@@ -41,12 +52,16 @@ public class BatteryFragment extends Fragment {
 
     private ParentAdapter parentAdapter;
 
+    @BindView(R.id.parent_layout)
+    View parent;
     @BindView(R.id.hundreds_digit)
     ImageView hundredsDigit;
     @BindView(R.id.tens_digit)
     ImageView tensDigit;
     @BindView(R.id.units_digit)
     ImageView unitsDigit;
+    @BindView(R.id.passtime)
+    TextView passtime;
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
 
@@ -66,10 +81,6 @@ public class BatteryFragment extends Fragment {
 
         Context context = getContext();
 
-        hundredsDigit.setVisibility(View.INVISIBLE);
-        tensDigit.setVisibility(View.INVISIBLE);
-        unitsDigit.setVisibility(View.INVISIBLE);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
@@ -84,6 +95,8 @@ public class BatteryFragment extends Fragment {
 
         context.registerReceiver(batteryReceiver, intentFilter);
 
+        handler.post(runnable);
+
         return view;
     }
 
@@ -93,9 +106,70 @@ public class BatteryFragment extends Fragment {
 
         super.onDestroyView();
         getContext().unregisterReceiver(batteryReceiver);
+        handler.removeCallbacks(runnable);
     }
 
-    public class BatteryReceiver extends BroadcastReceiver {
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            String time = getBootTime();
+            if (time != null) {
+                passtime.setText(String.valueOf(getBootTime()));
+            }
+            handler.postDelayed(this, INTERVAL);
+        }
+    };
+
+    private String getBootTime() {
+        int time = (int) SystemClock.elapsedRealtime() / 1000 / 60;
+        return String.format(getContext().getString(R.string.since_boot_time_value), time);
+    }
+
+    /**
+     * 权限问题无法用
+     * <p>
+     * cat proc/uptime
+     * 2206.53 14275.29
+     * 第一个表示系统启动到现在的时间num1，单位秒
+     * 第二个表示系统空闲时间num2，单位秒
+     * 空闲率= num2/(num1*N),N是逻辑cpu个数
+     *
+     * @return
+     */
+/*    private String getBootTime() {
+        InputStream is = null;
+        try {
+            is = new FileInputStream("/proc/uptime");
+            InputStreamReader ir = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(ir);
+            String line;
+
+            line = br.readLine();
+
+            String[] array = line.split(" ");
+            if (array.length < 2) {
+                return null;
+            }
+
+            Long time = Long.valueOf(array[0].trim()) / 60;
+
+            return String.valueOf(time);
+        } catch (IOException e) {
+            Log.e(TAG, "getCpuFreq: " + e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "getCpuFreq: " + e);
+                }
+            }
+        }
+
+        return null;
+    }*/
+
+    private class BatteryReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -114,7 +188,6 @@ public class BatteryFragment extends Fragment {
 
             updateLevelView(level);
 
-            child_list2.add(new OnlyTitleInfoBean(R.string.battery_capacity, String.valueOf(level).concat("%")));
             child_list2.add(new OnlyTitleInfoBean(R.string.battery_voltage, String.valueOf(voltage).concat("mv")));
             child_list2.add(new OnlyTitleInfoBean(R.string.battery_temperature, String.valueOf(temperature).concat("℃")));
             child_list2.add(new OnlyTitleInfoBean(R.string.battery_echnology, String.valueOf(technology)));
@@ -210,6 +283,8 @@ public class BatteryFragment extends Fragment {
         } else {
             unitsDigit.setVisibility(View.INVISIBLE);
         }
+
+        parent.setVisibility(View.VISIBLE);
 
     }
 

@@ -18,8 +18,8 @@ public class MemoryHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tv_title)
     public TextView title;
-    @BindView(R.id.tv_free_value)
-    public TextView freeValue;
+    @BindView(R.id.tv_available_value)
+    public TextView availableValue;
     @BindView(R.id.tv_total_value)
     public TextView totalValue;
     @BindView(R.id.progress)

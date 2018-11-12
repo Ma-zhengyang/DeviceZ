@@ -7,13 +7,15 @@ package com.android.mazhengyang.device_z.bean;
 public class MemoryBean {
 
     private int titleRes;
-    private Long freeValue;
-    private Long totalValue;
+    private String availableValue;
+    private String totalValue;
+    private int progress;
 
-    public MemoryBean(int titleRes, Long freeValue, Long totalValue) {
+    public MemoryBean(int titleRes, String availableValue, String totalValue, int progress) {
         this.titleRes = titleRes;
-        this.freeValue = freeValue;
+        this.availableValue = availableValue;
         this.totalValue = totalValue;
+        this.progress = progress;
     }
 
     public int getTitleRes() {
@@ -24,19 +26,27 @@ public class MemoryBean {
         this.titleRes = titleRes;
     }
 
-    public Long getFreeValue() {
-        return freeValue;
+    public String getAvailableValue() {
+        return availableValue;
     }
 
-    public void setFreeValue(Long freeValue) {
-        this.freeValue = freeValue;
+    public void setAvailableValue(String availableValue) {
+        this.availableValue = availableValue;
     }
 
-    public Long getTotalValue() {
+    public String getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(Long totalValue) {
+    public void setTotalValue(String totalValue) {
         this.totalValue = totalValue;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }

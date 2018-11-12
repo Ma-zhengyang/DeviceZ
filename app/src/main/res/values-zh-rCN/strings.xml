@@ -54,7 +54,6 @@
     <string name="battery_status">电池状态：</string>
     <string name="battery_charge">电源类型：</string>
     <string name="battery_health">健康状态：</string>
-    <string name="battery_capacity">剩余电量：</string>
     <string name="battery_voltage">电池电压：</string>
     <string name="battery_temperature">电池温度：</string>
     <string name="battery_echnology">电池技术：</string>
@@ -85,7 +84,10 @@
     <string name="barometer_sensor">压力传感器</string>
     <string name="unknow_sensor">未知</string>
     <!--memory-->
-    <string name="memory_capacity">手机容量</string>
+    <string name="since_boot_time_title">已开机时间:</string>
+    <string name="since_boot_time_value">%1$d分钟</string>
+    <string name="memory_capacity_ram">内存容量</string>
+    <string name="memory_capacity_rom">手机容量</string>
     <string name="memory_free">剩余：</string>
     <string name="memory_total">总计：</string>
 

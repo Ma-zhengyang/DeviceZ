@@ -97,14 +97,15 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         } else if (bean instanceof MemoryBean) {
 
             String title = context.getString(((MemoryBean) bean).getTitleRes());
-            Long free = ((MemoryBean) bean).getFreeValue();
-            Long total = ((MemoryBean) bean).getTotalValue();
+            String available = ((MemoryBean) bean).getAvailableValue();
+            String total = ((MemoryBean) bean).getTotalValue();
+            int progress = ((MemoryBean) bean).getProgress();
 
             ((MemoryHolder) holder).title.setText(title);
-            ((MemoryHolder) holder).freeValue.setText(String.valueOf(free) + "MB");
-            ((MemoryHolder) holder).totalValue.setText(String.valueOf(total) + "MB");
+            ((MemoryHolder) holder).availableValue.setText(available);
+            ((MemoryHolder) holder).totalValue.setText(total);
             ((MemoryHolder) holder).progressBar.setMax(100);
-            ((MemoryHolder) holder).progressBar.setProgress((int) ((1 - free * 1.0f / total) * 100));
+            ((MemoryHolder) holder).progressBar.setProgress(progress);
         } else if (bean instanceof SensorBean) {
 
             String title = context.getString(((SensorBean) bean).getTitleRes());
