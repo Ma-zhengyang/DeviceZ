@@ -7,15 +7,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="light_yellow">#33ffff00</color>
-    <color name="grey71">#77b5b5b5</color>
+    <color name="light_yellow">#22ffff00</color>
+    <color name="grey71">#77E8E8E8</color>
+    <color name="grey51">#88828282</color>
 
     <color name="system_info_color">#AAEE3B3B</color>
     <color name="cpu_info_color">#AA00008B</color>
     <color name="screen_info_color">#AA548B54</color>
     <color name="battery_info_color">#AAFF7F24</color>
-    <color name="memory_info_color">#AAEEAEEE</color>
+    <color name="memory_info_color">#AAFFEC8B</color>
     <color name="tools_info_color">#AA8DB6CD</color>
+    <color name="about_info_color">#AAEEAEEE</color>
 
     <color name="tool_torch_color">#AAEEC591</color>
     <color name="tool_compass_color">#AAFFAEB9</color>

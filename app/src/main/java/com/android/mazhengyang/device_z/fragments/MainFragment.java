@@ -3,7 +3,6 @@ package com.android.mazhengyang.device_z.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.MainAdapter;
 import com.android.mazhengyang.device_z.bean.MainBean;
+import com.android.mazhengyang.device_z.callback.ItemClickCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,17 +25,17 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-11-2.
  */
 
-public class MainFragment extends Fragment {
+public class MainFragment extends BaseFragment {
 
     private static final String TAG = MainFragment.class.getSimpleName();
 
-    private MainAdapter.OnItemClickListener onItemClickListener;
+    private ItemClickCallback callback;
 
     @BindView(R.id.main_recyclerview)
     RecyclerView recyclerView;
 
-    public void setListener(MainAdapter.OnItemClickListener listener) {
-        onItemClickListener = listener;
+    public void setListener(ItemClickCallback callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -83,8 +83,12 @@ public class MainFragment extends Fragment {
                 R.color.tools_info_color,
                 R.drawable.icon_tools,
                 R.string.tools_info, 5));
+        list.add(new MainBean(
+                R.color.about_info_color,
+                R.drawable.icon_about,
+                R.string.about_info, 6));
 
-        MainAdapter adapter = new MainAdapter(context, list, onItemClickListener);
+        MainAdapter adapter = new MainAdapter(context, list, callback);
         recyclerView.setAdapter(adapter);
 
         return view;
@@ -96,4 +100,8 @@ public class MainFragment extends Fragment {
         Log.d(TAG, "onDestroy: ");
     }
 
+    @Override
+    public boolean isRunning() {
+        return false;
+    }
 }

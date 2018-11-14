@@ -7,6 +7,7 @@
     <string name="battery_info">电池</string>
     <string name="memory_info">磁盘空间</string>
     <string name="tools_info">工具箱</string>
+    <string name="about_info">关于帮助</string>
     <!--tools-->
     <string name="torch">手电筒</string>
     <string name="compass">指南针</string>
@@ -18,11 +19,13 @@
     <string name="screen_bad_pixel_detection_des">通过触摸红、绿、蓝等纯色背景检查屏幕是否存在小亮点，存在小亮点即为坏点</string>
     <string name="screen_edge_detection_des">通过用纯色涂抹屏幕边缘，直到边缘均匀涂满，观察边缘是否能够涂满检测边缘完整性</string>
     <string name="screen_multi_touch_detection_des">通过多点触摸检测出系统支持几点触控，将尽量多的手指同时按到屏幕上</string>
+    <string name="screen_start">开始</string>
     <string name="screen_dpi">DPI：</string>
     <string name="screen_dpi_value">%1$d像素/英寸</string>
     <string name="screen_resolution">分辨率：</string>
     <string name="screen_density">屏幕密度：</string>
-    <string name="screen_start">开始</string>
+    <string name="screen_multi_touch_info">第%1$d点 按下坐标(%2$d，%3$d)</string>
+    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--system info-->
     <string name="device_brand">品牌：</string>
     <string name="device_model">型号：</string>
@@ -66,7 +69,7 @@
     <string name="battery_charging_usb">USB</string>
     <string name="battery_charging_wireless">无线</string>
     <string name="battery_charging_unknow">无供电电源</string>
-    <string name="battery_health_good">健康</string>
+    <string name="battery_health_good">良好</string>
     <string name="battery_health_over_heat">过热</string>
     <string name="battery_health_dead">电压偏低</string>
     <string name="battery_health_over_voltage">电压过高</string>
@@ -85,10 +88,10 @@
     <string name="unknow_sensor">未知</string>
     <!--memory-->
     <string name="since_boot_time_title">已开机时间:</string>
-    <string name="since_boot_time_value">%1$d分钟</string>
+    <string name="since_boot_time_value">%1$d小时%2$d分钟</string>
     <string name="memory_capacity_ram">内存容量</string>
     <string name="memory_capacity_rom">手机容量</string>
-    <string name="memory_free">剩余：</string>
+    <string name="memory_available">剩余：</string>
     <string name="memory_total">总计：</string>
 
 </resources>

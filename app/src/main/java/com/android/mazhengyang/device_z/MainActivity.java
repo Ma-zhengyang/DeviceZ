@@ -1,11 +1,12 @@
 package com.android.mazhengyang.device_z;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.android.mazhengyang.device_z.adapter.MainAdapter;
+import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.fragments.AboutFragment;
+import com.android.mazhengyang.device_z.fragments.BaseFragment;
 import com.android.mazhengyang.device_z.fragments.BatteryFragment;
 import com.android.mazhengyang.device_z.fragments.CPUFragment;
 import com.android.mazhengyang.device_z.fragments.MainFragment;
@@ -13,27 +14,22 @@ import com.android.mazhengyang.device_z.fragments.MemoryFragment;
 import com.android.mazhengyang.device_z.fragments.ScreenFragment;
 import com.android.mazhengyang.device_z.fragments.SystemFragment;
 import com.android.mazhengyang.device_z.fragments.ToolMainFragment;
-import com.android.mazhengyang.device_z.fragments.tools.CompassFragment;
-import com.android.mazhengyang.device_z.fragments.tools.SensorsFragment;
-import com.android.mazhengyang.device_z.fragments.tools.TorchFragment;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickCallback {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
     private MainFragment mainFragment;
-    private SystemFragment deviceInfoFragment;
+    private SystemFragment systemFragment;
     private CPUFragment cpuFragment;
     private ScreenFragment screenFragment;
     private BatteryFragment batteryFragment;
     private MemoryFragment memoryFragment;
     private ToolMainFragment toolMainFragment;
-    private TorchFragment torchFragment;
-    private CompassFragment compassFragment;
-    private SensorsFragment sensorsFragment;
-    private Fragment currentFragment;
+    private AboutFragment aboutFragment;
+    private BaseFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,97 +39,68 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         MainFragment fragment = new MainFragment();
-        fragment.setListener(listener);
+        fragment.setListener(this);
         showFragment(fragment);
         mainFragment = fragment;
     }
 
-    private MainAdapter.OnItemClickListener listener = new MainAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(int id) {
-
-            Fragment fragment = null;
-            switch (id) {
-                case 0:
-                    if (deviceInfoFragment == null) {
-                        deviceInfoFragment = new SystemFragment();
-                    }
-                    fragment = deviceInfoFragment;
-                    break;
-                case 1:
-                    if (cpuFragment == null) {
-                        cpuFragment = new CPUFragment();
-                    }
-                    fragment = cpuFragment;
-                    break;
-                case 2:
-                    if (screenFragment == null) {
-                        screenFragment = new ScreenFragment();
-                    }
-                    fragment = screenFragment;
-                    break;
-                case 3:
-                    if (batteryFragment == null) {
-                        batteryFragment = new BatteryFragment();
-                    }
-                    fragment = batteryFragment;
-                    break;
-                case 4:
-                    if (memoryFragment == null) {
-                        memoryFragment = new MemoryFragment();
-                    }
-                    fragment = memoryFragment;
-                    break;
-                case 5:
-                    if (toolMainFragment == null) {
-                        toolMainFragment = new ToolMainFragment();
-                        toolMainFragment.setListener(tool_listener);
-                    }
-                    fragment = toolMainFragment;
-                    break;
-                default:
-                    break;
-            }
-
-            showFragment(fragment);
+    @Override
+    public void start(int position, int titleRes) {
+        BaseFragment fragment = null;
+        switch (position) {
+            case 0:
+                if (systemFragment == null) {
+                    systemFragment = new SystemFragment();
+                }
+                fragment = systemFragment;
+                break;
+            case 1:
+                if (cpuFragment == null) {
+                    cpuFragment = new CPUFragment();
+                }
+                fragment = cpuFragment;
+                break;
+            case 2:
+                if (screenFragment == null) {
+                    screenFragment = new ScreenFragment();
+                }
+                fragment = screenFragment;
+                break;
+            case 3:
+                if (batteryFragment == null) {
+                    batteryFragment = new BatteryFragment();
+                }
+                fragment = batteryFragment;
+                break;
+            case 4:
+                if (memoryFragment == null) {
+                    memoryFragment = new MemoryFragment();
+                }
+                fragment = memoryFragment;
+                break;
+            case 5:
+                if (toolMainFragment == null) {
+                    toolMainFragment = new ToolMainFragment();
+                }
+                fragment = toolMainFragment;
+                break;
+            case 6:
+                if (aboutFragment == null) {
+                    aboutFragment = new AboutFragment();
+                }
+                fragment = aboutFragment;
+            default:
+                break;
         }
-    };
 
-    private MainAdapter.OnItemClickListener tool_listener = new MainAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(int id) {
+        fragment.setTitleRes(titleRes);
+        showFragment(fragment);
+    }
 
-            Fragment fragment = null;
-            switch (id) {
-                case 0:
-                    if (torchFragment == null) {
-                        torchFragment = new TorchFragment();
-                    }
-                    fragment = torchFragment;
-                    break;
-                case 1:
-                    if (compassFragment == null) {
-                        compassFragment = new CompassFragment();
-                    }
-                    fragment = compassFragment;
-                    break;
-                case 2:
-                    if (sensorsFragment == null) {
-                        sensorsFragment = new SensorsFragment();
-                    }
-                    fragment = sensorsFragment;
-                    break;
-                default:
-                    break;
-            }
-
-            showFragment(fragment);
-        }
-    };
-
-    private void showFragment(Fragment fragment) {
+    private void showFragment(BaseFragment fragment) {
 
         if (fragment != null && fragment != currentFragment) {
+
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_content, fragment)
@@ -144,24 +111,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onBackPressed() {
         if (currentFragment != mainFragment) {
-            if (isTool()) {
-                showFragment(toolMainFragment);
-            } else {
-                showFragment(mainFragment);
+            if (currentFragment.isRunning()) {
+                return;
             }
+            showFragment(mainFragment);
         } else {
             super.onBackPressed();
         }
     }
-
-    private boolean isTool() {
-        return currentFragment == torchFragment
-                || currentFragment == compassFragment
-                || currentFragment == sensorsFragment;
-    }
-
 }

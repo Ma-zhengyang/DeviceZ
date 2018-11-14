@@ -2,5 +2,5 @@
 
 <layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
     android:animation="@anim/slide_right_out"
-    android:animationOrder="random"
+    android:animationOrder="normal"
     android:delay="15%" />

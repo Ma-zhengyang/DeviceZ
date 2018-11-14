@@ -8,14 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.mazhengyang.device_z.R;
+import com.android.mazhengyang.device_z.bean.IconTitleInfoBean;
 import com.android.mazhengyang.device_z.bean.MemoryBean;
-import com.android.mazhengyang.device_z.bean.OnlyTitleInfoBean;
+import com.android.mazhengyang.device_z.bean.TitleInfoBean;
 import com.android.mazhengyang.device_z.bean.ScreenBean;
 import com.android.mazhengyang.device_z.bean.SensorBean;
+import com.android.mazhengyang.device_z.holder.IconTitleInfoHolder;
 import com.android.mazhengyang.device_z.holder.MemoryHolder;
-import com.android.mazhengyang.device_z.holder.OnlyTitleInfoHolder;
+import com.android.mazhengyang.device_z.holder.TitleInfoHolder;
 import com.android.mazhengyang.device_z.holder.ScreenHolder;
 import com.android.mazhengyang.device_z.holder.SensorHolder;
+import com.android.mazhengyang.device_z.callback.ItemClickCallback;
 
 import java.util.List;
 
@@ -28,16 +31,19 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final String TAG = ChildAdapter.class.getSimpleName();
 
     private static final int TYPE_ONLY_TITLE_INFO = 0;
-    private static final int TYPE_SCREEN = 1;
-    private static final int TYPE_MEMORY = 2;
-    private static final int TYPE_SENSOR = 3;
+    private static final int TYPE_ICON_TITLE_INFO = 1;
+    private static final int TYPE_SCREEN = 2;
+    private static final int TYPE_MEMORY = 3;
+    private static final int TYPE_SENSOR = 4;
 
     private Context context;
     private List<?> child_list;
+    private ItemClickCallback listener;
 
-    public ChildAdapter(Context context, List<?> child_list) {
+    public ChildAdapter(Context context, List<?> child_list, ItemClickCallback listener) {
         this.context = context;
         this.child_list = child_list;
+        this.listener = listener;
     }
 
     public void update(List<?> child_list) {
@@ -51,13 +57,18 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (viewType == TYPE_ONLY_TITLE_INFO) {
             View v = LayoutInflater.from(context)
-                    .inflate(R.layout.child_item_only_title_info, parent, false);
-            OnlyTitleInfoHolder vh = new OnlyTitleInfoHolder(v);
+                    .inflate(R.layout.child_item_title_info, parent, false);
+            TitleInfoHolder vh = new TitleInfoHolder(v);
+            return vh;
+        } else if (viewType == TYPE_ICON_TITLE_INFO) {
+            View v = LayoutInflater.from(context)
+                    .inflate(R.layout.child_item_icon_title_info, parent, false);
+            IconTitleInfoHolder vh = new IconTitleInfoHolder(v);
             return vh;
         } else if (viewType == TYPE_SCREEN) {
             View v = LayoutInflater.from(context)
                     .inflate(R.layout.child_item_screen, parent, false);
-            ScreenHolder vh = new ScreenHolder(v);
+            ScreenHolder vh = new ScreenHolder(v, listener);
             return vh;
         } else if (viewType == TYPE_MEMORY) {
             View v = LayoutInflater.from(context)
@@ -78,13 +89,23 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Log.d(TAG, "onBindViewHolder: ");
 
         Object bean = child_list.get(position);
-        if (bean instanceof OnlyTitleInfoBean) {
+        if (bean instanceof TitleInfoBean) {
 
-            String title = context.getString(((OnlyTitleInfoBean) bean).getTitleRes());
-            String info = ((OnlyTitleInfoBean) bean).getInfo();
+            String title = context.getString(((TitleInfoBean) bean).getTitleRes());
+            String info = ((TitleInfoBean) bean).getInfo();
 
-            ((OnlyTitleInfoHolder) holder).title.setText(title);
-            ((OnlyTitleInfoHolder) holder).info.setText(info);
+            ((TitleInfoHolder) holder).title.setText(title);
+            ((TitleInfoHolder) holder).info.setText(info);
+        } else if (bean instanceof IconTitleInfoBean) {
+
+            int imgRes = ((IconTitleInfoBean) bean).getImgRes();
+            String title = context.getString(((IconTitleInfoBean) bean).getTitleRes());
+            String info = ((IconTitleInfoBean) bean).getInfo();
+
+            ((IconTitleInfoHolder) holder).imageView.setImageResource(imgRes);
+            ((IconTitleInfoHolder) holder).title.setText(title);
+            ((IconTitleInfoHolder) holder).info.setText(info);
+
         } else if (bean instanceof ScreenBean) {
 
             int imgRes = ((ScreenBean) bean).getImgRes();
@@ -111,8 +132,9 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             String title = context.getString(((SensorBean) bean).getTitleRes());
             int imgRes = ((SensorBean) bean).getImgRes();
 
-            ((SensorHolder) holder).title.setText(title);
             ((SensorHolder) holder).imageView.setImageResource(imgRes);
+            ((SensorHolder) holder).title.setText(title);
+
         }
     }
 
@@ -126,8 +148,10 @@ public class ChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if (child_list.get(position) instanceof OnlyTitleInfoBean) {
+        if (child_list.get(position) instanceof TitleInfoBean) {
             return TYPE_ONLY_TITLE_INFO;
+        } else if (child_list.get(position) instanceof IconTitleInfoBean) {
+            return TYPE_ICON_TITLE_INFO;
         } else if (child_list.get(position) instanceof ScreenBean) {
             return TYPE_SCREEN;
         } else if (child_list.get(position) instanceof MemoryBean) {

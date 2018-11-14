@@ -6,14 +6,13 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.StatFs;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
@@ -35,7 +34,7 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-11-5.
  */
 
-public class MemoryFragment extends Fragment {
+public class MemoryFragment extends BaseFragment {
 
     private static final String TAG = MemoryFragment.class.getSimpleName();
 
@@ -46,6 +45,8 @@ public class MemoryFragment extends Fragment {
 
     private ParentAdapter parentAdapter;
 
+    @BindView(R.id.bar_title)
+    TextView title;
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
 
@@ -60,12 +61,14 @@ public class MemoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_memory, null);
         ButterKnife.bind(this, view);
 
+        title.setText(getTitleRes());
+
         Context context = getContext();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        parentAdapter = new ParentAdapter(context, null);
+        parentAdapter = new ParentAdapter(context, null, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         handler.post(runnable);
@@ -82,6 +85,11 @@ public class MemoryFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public boolean isRunning() {
+        return false;
     }
 
     private Runnable runnable = new Runnable() {

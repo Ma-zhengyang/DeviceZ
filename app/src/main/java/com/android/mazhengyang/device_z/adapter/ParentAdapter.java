@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.android.mazhengyang.device_z.R;
+import com.android.mazhengyang.device_z.callback.ItemClickCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,12 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private Context context;
     private List<?> parent_list;
+    private ItemClickCallback listener;
 
-    public ParentAdapter(Context context, List<?> lists) {
+    public ParentAdapter(Context context, List<?> lists, ItemClickCallback listener) {
         this.context = context;
         this.parent_list = lists;
+        this.listener = listener;
     }
 
     public void update(List<?> parent_list) {
@@ -66,11 +69,11 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             LinearLayoutManager layoutManager = new LinearLayoutManager(context);
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
-            if(child_list.size() > 1){
+            if (child_list.size() > 1) {
                 recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
             }
 
-            ChildAdapter childBaseInfoAdapter = new ChildAdapter(context, child_list);
+            ChildAdapter childBaseInfoAdapter = new ChildAdapter(context, child_list, listener);
             recyclerView.setAdapter(childBaseInfoAdapter);
 
             LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(context,

@@ -2,9 +2,7 @@ package com.android.mazhengyang.device_z.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.bean.MainBean;
+import com.android.mazhengyang.device_z.callback.ItemClickCallback;
 
 import java.util.List;
 
@@ -29,19 +28,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = MainAdapter.class.getSimpleName();
 
+    private ItemClickCallback callback;
     private Context context;
     private List<MainBean> list;
 
-    private OnItemClickListener onItemClickListener;
-
-    public interface OnItemClickListener {
-        void onItemClick(int id);
-    }
-
-    public MainAdapter(Context context, List<MainBean> list, OnItemClickListener listener) {
+    public MainAdapter(Context context, List<MainBean> list, ItemClickCallback callback) {
         this.context = context;
         this.list = list;
-        onItemClickListener = listener;
+        this.callback = callback;
     }
 
     @Override
@@ -97,8 +91,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(list.get(getPosition()).getId());
+                    if (callback != null) {
+                        int id = list.get(getPosition()).getId();
+                        int titleRes = list.get(getPosition()).getTitleRes();
+                        callback.start(id, titleRes);
                         itemView.setClickable(true);
                     }
                 }

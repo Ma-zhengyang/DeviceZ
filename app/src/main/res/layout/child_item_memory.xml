@@ -33,7 +33,7 @@
                 android:id="@+id/tv_available_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/memory_free" />
+                android:text="@string/memory_available" />
 
             <TextView
                 android:id="@+id/tv_available_value"

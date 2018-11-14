@@ -7,6 +7,7 @@
     <string name="battery_info">Battery</string>
     <string name="memory_info">Memory</string>
     <string name="tools_info">Tools</string>
+    <string name="about_info">About</string>
     <!--tools-->
     <string name="torch">Torch</string>
     <string name="compass">Compass</string>
@@ -23,6 +24,8 @@
     <string name="screen_dpi_value">%1$dpixel/inch</string>
     <string name="screen_resolution">resolution:</string>
     <string name="screen_density">density:</string>
+    <string name="screen_multi_touch_info">%1$d point(%2$d，%3$d)</string>
+    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--system info-->
     <string name="device_brand">Brand:</string>
     <string name="device_model">Model:</string>
@@ -85,9 +88,10 @@
     <string name="unknow_sensor">unknow</string>
     <!--memory-->
     <string name="since_boot_time_title">Since boot:</string>
-    <string name="since_boot_time_value">%1$ds</string>
+    <string name="since_boot_time_value">%1$dH%2$dM</string>
+    <string name="memory_capacity_ram">RAM</string>
     <string name="memory_capacity_rom">ROM</string>
-    <string name="memory_free">Free:</string>
+    <string name="memory_available">Free:</string>
     <string name="memory_total">Total:</string>
     <!--other-->
     <string name="percent">%</string>

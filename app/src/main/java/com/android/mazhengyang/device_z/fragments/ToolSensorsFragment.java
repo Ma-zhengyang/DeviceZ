@@ -1,11 +1,10 @@
-package com.android.mazhengyang.device_z.fragments.tools;
+package com.android.mazhengyang.device_z.fragments;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,9 +26,9 @@ import butterknife.ButterKnife;
  * Created by mazhengyang on 18-10-19.
  */
 
-public class SensorsFragment extends Fragment {
+public class ToolSensorsFragment extends BaseFragment {
 
-    private static final String TAG = SensorsFragment.class.getSimpleName();
+    private static final String TAG = ToolSensorsFragment.class.getSimpleName();
 
     @BindView(R.id.parent_recyclerview)
     RecyclerView parentRecyclerView;
@@ -56,7 +55,7 @@ public class SensorsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list);
+        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         return view;
@@ -66,6 +65,11 @@ public class SensorsFragment extends Fragment {
     public void onDestroyView() {
         Log.d(TAG, "onDestroyView: ");
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean isRunning() {
+        return false;
     }
 
     private List<SensorBean> getChildList(Context context) {

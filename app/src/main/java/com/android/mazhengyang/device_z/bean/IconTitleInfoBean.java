@@ -1,17 +1,27 @@
 package com.android.mazhengyang.device_z.bean;
 
 /**
- * Created by mazhengyang on 18-11-5.
+ * Created by mazhengyang on 18-11-13.
  */
 
-public class OnlyTitleInfoBean {
+public class IconTitleInfoBean {
 
+    private int imgRes;
     private int titleRes;
     private String info;
 
-    public OnlyTitleInfoBean(int titleRes, String info) {
+    public IconTitleInfoBean(int imgRes, int titleRes, String info) {
+        this.imgRes = imgRes;
         this.titleRes = titleRes;
         this.info = info;
+    }
+
+    public int getImgRes() {
+        return imgRes;
+    }
+
+    public void setImgRes(int imgRes) {
+        this.imgRes = imgRes;
     }
 
     public int getTitleRes() {
