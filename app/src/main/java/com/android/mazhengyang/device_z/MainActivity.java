@@ -1,10 +1,14 @@
 package com.android.mazhengyang.device_z;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
 import com.android.mazhengyang.device_z.fragments.AboutFragment;
 import com.android.mazhengyang.device_z.fragments.BaseFragment;
 import com.android.mazhengyang.device_z.fragments.BatteryFragment;
@@ -20,6 +24,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements ItemClickCallback {
 
     private final String TAG = MainActivity.class.getSimpleName();
+
+    private static final int PERMISSIONS_REQUEST_CAMERA = 1024;
 
     private MainFragment mainFragment;
     private SystemFragment systemFragment;
@@ -42,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements ItemClickCallback
         fragment.setListener(this);
         showFragment(fragment);
         mainFragment = fragment;
+
+        checkCameraPermission();
     }
 
     @Override
@@ -120,6 +128,37 @@ public class MainActivity extends AppCompatActivity implements ItemClickCallback
             showFragment(mainFragment);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private void checkCameraPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                PERMISSIONS_REQUEST_CAMERA);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_CAMERA: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: success");
+                } else {
+                    Log.d(TAG, "onRequestPermissionsResult: fail");
+                    Toast.makeText(this, R.string.camera_permisson_fail, Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+            default:
+                break;
         }
     }
 }

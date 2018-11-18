@@ -68,7 +68,7 @@ public class SystemFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, null);
+        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, R.anim.layout_slide_right_out, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         return view;

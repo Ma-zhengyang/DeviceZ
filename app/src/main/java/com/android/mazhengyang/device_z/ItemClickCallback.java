@@ -1,4 +1,4 @@
-package com.android.mazhengyang.device_z.callback;
+package com.android.mazhengyang.device_z;
 
 /**
  * Created by mazhengyang on 18-11-12.

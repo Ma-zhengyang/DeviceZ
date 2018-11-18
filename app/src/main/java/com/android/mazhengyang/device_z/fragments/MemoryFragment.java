@@ -68,7 +68,7 @@ public class MemoryFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        parentAdapter = new ParentAdapter(context, null, null);
+        parentAdapter = new ParentAdapter(context, null, R.anim.layout_scale_out, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         handler.post(runnable);

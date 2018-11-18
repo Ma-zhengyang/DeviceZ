@@ -1,4 +1,4 @@
-package com.android.mazhengyang.device_z.holder;
+package com.android.mazhengyang.device_z.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.ItemClickCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

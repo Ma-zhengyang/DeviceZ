@@ -1,4 +1,4 @@
-package com.android.mazhengyang.device_z.holder;
+package com.android.mazhengyang.device_z.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,18 +11,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by mazhengyang on 18-11-6.
+ * Created by mazhengyang on 18-11-15.
  */
 
-public class SensorHolder extends RecyclerView.ViewHolder{
+public class AboutHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.iv_image)
     public ImageView imageView;
     @BindView(R.id.tv_title)
     public TextView title;
+    @BindView(R.id.tv_info)
+    public TextView info;
 
-    public SensorHolder(View itemView) {
+    public AboutHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
+
 }

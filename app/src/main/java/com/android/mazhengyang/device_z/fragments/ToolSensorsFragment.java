@@ -55,7 +55,7 @@ public class ToolSensorsFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, null);
+        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, R.anim.layout_slide_right_out, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         return view;
@@ -79,22 +79,32 @@ public class ToolSensorsFragment extends BaseFragment {
         List<Sensor> all = sensorManager.getSensorList(Sensor.TYPE_ALL);
         Log.d(TAG, "getChildList: " + all.size());
 
-        Sensor light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        Sensor gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        Sensor light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         Sensor magnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        Sensor origntation = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         Sensor barometer = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        Sensor temperature = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
+        Sensor gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        Sensor humidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        Sensor rotation_vector = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        Sensor linear_acceleration = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
         List<SensorBean> child_list = new ArrayList<>();
-        child_list.add(new SensorBean(R.string.light_sensor, getRes(light)));
-        child_list.add(new SensorBean(R.string.proximity_sensor, getRes(proximity)));
-        child_list.add(new SensorBean(R.string.gravity_sensor, getRes(gravity)));
         child_list.add(new SensorBean(R.string.accelerometer_sensor, getRes(accelerometer)));
         child_list.add(new SensorBean(R.string.gyroscope_sensor, getRes(gyroscope)));
+        child_list.add(new SensorBean(R.string.light_sensor, getRes(light)));
         child_list.add(new SensorBean(R.string.magnetometer_sensor, getRes(magnetic)));
+        child_list.add(new SensorBean(R.string.origntation_sensor, getRes(origntation)));
         child_list.add(new SensorBean(R.string.barometer_sensor, getRes(barometer)));
+        child_list.add(new SensorBean(R.string.proximity_sensor, getRes(proximity)));
+        child_list.add(new SensorBean(R.string.temperature_sensor, getRes(temperature)));
+        child_list.add(new SensorBean(R.string.gravity_sensor, getRes(gravity)));
+        child_list.add(new SensorBean(R.string.humidity_sensor, getRes(humidity)));
+        child_list.add(new SensorBean(R.string.rotation_vector_sensor, getRes(rotation_vector)));
+        child_list.add(new SensorBean(R.string.linear_acceleration_sensor, getRes(linear_acceleration)));
 
         return child_list;
     }

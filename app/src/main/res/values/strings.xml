@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Device-Z</string>
 
-    <string name="system_info">System Info</string>
+    <string name="system_info">System</string>
     <string name="cpu_info">CPU</string>
     <string name="screen_info">Screen</string>
     <string name="battery_info">Battery</string>
@@ -12,26 +12,12 @@
     <string name="torch">Torch</string>
     <string name="compass">Compass</string>
     <string name="sensors">Sensors</string>
-    <!--screen-->
-    <string name="screen_bad_pixel_detection">Bad pixel</string>
-    <string name="screen_edge_detection">Edge</string>
-    <string name="screen_multi_touch_detection">Multi touch</string>
-    <string name="screen_bad_pixel_detection_des">Dead pixel</string>
-    <string name="screen_edge_detection_des">Edge</string>
-    <string name="screen_multi_touch_detection_des">Multi touch</string>
-    <string name="screen_start">start</string>
-    <string name="screen_dpi">DPI:</string>
-    <string name="screen_dpi_value">%1$dpixel/inch</string>
-    <string name="screen_resolution">resolution:</string>
-    <string name="screen_density">density:</string>
-    <string name="screen_multi_touch_info">%1$d point(%2$d，%3$d)</string>
-    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--system info-->
     <string name="device_brand">Brand:</string>
     <string name="device_model">Model:</string>
     <string name="device_product">Product:</string>
     <string name="device_board">Board:</string>
-    <string name="hardware">Hardware：</string>
+    <string name="hardware">Hardware:</string>
     <string name="os_build">Build release:</string>
     <string name="os_build_display">Build display:</string>
     <string name="sdk">SDK:</string>
@@ -53,6 +39,20 @@
     <string name="cpu_variant">Variant:</string>
     <string name="cpu_part">Part:</string>
     <string name="cpu_revision">Revision:</string>
+    <!--screen-->
+    <string name="screen_bad_pixel_detection">Bad pixel</string>
+    <string name="screen_edge_detection">Edge</string>
+    <string name="screen_multi_touch_detection">Multi touch</string>
+    <string name="screen_bad_pixel_detection_des">Dead pixel</string>
+    <string name="screen_edge_detection_des">Edge</string>
+    <string name="screen_multi_touch_detection_des">Multi touch</string>
+    <string name="screen_start">start</string>
+    <string name="screen_dpi">DPI:</string>
+    <string name="screen_dpi_value">%1$dpixel/inch</string>
+    <string name="screen_resolution">resolution:</string>
+    <string name="screen_density">density:</string>
+    <string name="screen_multi_touch_info">%1$d point(%2$d，%3$d)</string>
+    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--battery info-->
     <string name="battery_status">Status:</string>
     <string name="battery_charge">Charge:</string>
@@ -77,22 +77,42 @@
     <string name="battery_health_cold">Cold</string>
     <string name="battery_health_unknow">Unknow</string>
     <string name="battery_label_text">Capacity rate</string>
-    <!--sensors-->
-    <string name="light_sensor">Light</string>
-    <string name="proximity_sensor">Proximity</string>
-    <string name="gravity_sensor">Gravity</string>
-    <string name="accelerometer_sensor">Accelerometer</string>
-    <string name="gyroscope_sensor">Gyroscope</string>
-    <string name="magnetometer_sensor">Magnetometer</string>
-    <string name="barometer_sensor">Barometer</string>
-    <string name="unknow_sensor">unknow</string>
     <!--memory-->
     <string name="since_boot_time_title">Since boot:</string>
     <string name="since_boot_time_value">%1$dH%2$dM</string>
     <string name="memory_capacity_ram">RAM</string>
     <string name="memory_capacity_rom">ROM</string>
-    <string name="memory_available">Free:</string>
-    <string name="memory_total">Total:</string>
+    <string name="memory_available">Available:&#160;</string>
+    <string name="memory_total">Total:&#160;</string>
+    <!--torch-->
+    <string name="camera_permisson_fail">no camera permission, torch is unavailable</string>
+    <!--compass-->
+    <string name="east">East</string>
+    <string name="south">South</string>
+    <string name="west">West</string>
+    <string name="north">North</string>
+    <string name="southeast">Southeast</string>
+    <string name="northeast">Northeast</string>
+    <string name="southwest">Southwest</string>
+    <string name="northwest">Northwest</string>
+    <!--sensors-->
+    <string name="accelerometer_sensor">Accelerometer</string>
+    <string name="gyroscope_sensor">Gyroscope</string>
+    <string name="light_sensor">Light</string>
+    <string name="magnetometer_sensor">Magnetometer</string>
+    <string name="origntation_sensor">Origntation</string>
+    <string name="barometer_sensor">Barometer</string>
+    <string name="proximity_sensor">Proximity</string>
+    <string name="temperature_sensor">Temperature</string>
+    <string name="gravity_sensor">Gravity</string>
+    <string name="humidity_sensor">Humidity</string>
+    <string name="rotation_vector_sensor">Rotation vector</string>
+    <string name="linear_acceleration_sensor">Linear acceleration</string>
+    <!--about-->
+    <string name="author_appname">App name:&#160;</string>
+    <string name="author_appversion">Version:&#160;</string>
+    <string name="author_qq">QQ:&#160;</string>
+    <string name="author_github">Github:&#160;</string>
     <!--other-->
     <string name="percent">%</string>
 

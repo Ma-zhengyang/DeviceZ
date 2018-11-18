@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.util.Utils;
+import com.android.mazhengyang.device_z.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -258,9 +258,12 @@ public class ScreenTestView extends View {
         c.drawColor(Color.BLACK);
 
         if (toastInfo != null) {
-            c.drawText(toastInfo,
-                    (getWidth() - toastInfo.length() * touchPaint.getTextSize()) / 2,
-                    getHeight() / 2, touchPaint);
+            Rect rect = new Rect();
+            touchPaint.getTextBounds(toastInfo, 0, toastInfo.length(), rect);
+            //文字宽度
+            int mTextWidth = rect.width();
+            //让文字水平居中显示
+            c.drawText(toastInfo, getWidth() / 2 - mTextWidth / 2, getHeight() / 2, touchPaint);
         }
 
         for (int i = 0; i < list.size(); i++) {

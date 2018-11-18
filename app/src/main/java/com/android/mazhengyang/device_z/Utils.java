@@ -1,4 +1,4 @@
-package com.android.mazhengyang.device_z.util;
+package com.android.mazhengyang.device_z;
 
 import android.content.Context;
 

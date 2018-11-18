@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">硬件检测</string>
+    <string name="app_name">硬件检测专家</string>
 
     <string name="system_info">系统信息</string>
     <string name="cpu_info">处理器</string>
@@ -12,20 +12,6 @@
     <string name="torch">手电筒</string>
     <string name="compass">指南针</string>
     <string name="sensors">传感器</string>
-    <!--screen-->
-    <string name="screen_bad_pixel_detection">屏幕坏点检测</string>
-    <string name="screen_edge_detection">屏幕边缘检测</string>
-    <string name="screen_multi_touch_detection">多点触控检测</string>
-    <string name="screen_bad_pixel_detection_des">通过触摸红、绿、蓝等纯色背景检查屏幕是否存在小亮点，存在小亮点即为坏点</string>
-    <string name="screen_edge_detection_des">通过用纯色涂抹屏幕边缘，直到边缘均匀涂满，观察边缘是否能够涂满检测边缘完整性</string>
-    <string name="screen_multi_touch_detection_des">通过多点触摸检测出系统支持几点触控，将尽量多的手指同时按到屏幕上</string>
-    <string name="screen_start">开始</string>
-    <string name="screen_dpi">DPI：</string>
-    <string name="screen_dpi_value">%1$d像素/英寸</string>
-    <string name="screen_resolution">分辨率：</string>
-    <string name="screen_density">屏幕密度：</string>
-    <string name="screen_multi_touch_info">第%1$d点 按下坐标(%2$d，%3$d)</string>
-    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--system info-->
     <string name="device_brand">品牌：</string>
     <string name="device_model">型号：</string>
@@ -53,6 +39,20 @@
     <string name="cpu_variant">变量：</string>
     <string name="cpu_part">部分：</string>
     <string name="cpu_revision">修订：</string>
+    <!--screen-->
+    <string name="screen_bad_pixel_detection">屏幕坏点检测</string>
+    <string name="screen_edge_detection">屏幕边缘检测</string>
+    <string name="screen_multi_touch_detection">多点触控检测</string>
+    <string name="screen_bad_pixel_detection_des">通过触摸红、绿、蓝等纯色背景检查屏幕是否存在小亮点，存在小亮点即为坏点</string>
+    <string name="screen_edge_detection_des">通过用纯色涂抹屏幕边缘，直到边缘均匀涂满，观察边缘是否能够涂满检测边缘完整性</string>
+    <string name="screen_multi_touch_detection_des">通过多点触摸检测出系统支持几点触控，将尽量多的手指同时按到屏幕上</string>
+    <string name="screen_start">开始</string>
+    <string name="screen_dpi">DPI：</string>
+    <string name="screen_dpi_value">%1$d像素/英寸</string>
+    <string name="screen_resolution">分辨率：</string>
+    <string name="screen_density">屏幕密度：</string>
+    <string name="screen_multi_touch_info">第%1$d点 按下坐标(%2$d，%3$d)</string>
+    <string name="screen_multi_touch_toast">将尽量多的手指同时按到屏幕上开始测试</string>
     <!--battery info-->
     <string name="battery_status">电池状态：</string>
     <string name="battery_charge">电源类型：</string>
@@ -77,21 +77,41 @@
     <string name="battery_health_cold">过冷</string>
     <string name="battery_health_unknow">未知</string>
     <string name="battery_label_text">剩余电量</string>
-    <!--sensors-->
-    <string name="light_sensor">光线传感器</string>
-    <string name="proximity_sensor">距离传感器</string>
-    <string name="gravity_sensor">重力传感器</string>
-    <string name="accelerometer_sensor">加速度传感器</string>
-    <string name="gyroscope_sensor">陀螺仪传感器</string>
-    <string name="magnetometer_sensor">电磁传感器</string>
-    <string name="barometer_sensor">压力传感器</string>
-    <string name="unknow_sensor">未知</string>
     <!--memory-->
     <string name="since_boot_time_title">已开机时间:</string>
     <string name="since_boot_time_value">%1$d小时%2$d分钟</string>
     <string name="memory_capacity_ram">内存容量</string>
     <string name="memory_capacity_rom">手机容量</string>
-    <string name="memory_available">剩余：</string>
-    <string name="memory_total">总计：</string>
+    <string name="memory_available">剩余：&#160;</string>
+    <string name="memory_total">总计：&#160;</string>
+    <!--torch-->
+    <string name="camera_permisson_fail">获取相机权限失败，手电筒功能将不可用</string>
+    <!--compass-->
+    <string name="east">东</string>
+    <string name="south">南</string>
+    <string name="west">西</string>
+    <string name="north">北</string>
+    <string name="southeast">东南</string>
+    <string name="northeast">东北</string>
+    <string name="southwest">西南</string>
+    <string name="northwest">西北</string>
+    <!--sensors-->
+    <string name="accelerometer_sensor">加速度传感器</string>
+    <string name="gyroscope_sensor">陀螺仪传感器</string>
+    <string name="light_sensor">光线传感器</string>
+    <string name="magnetometer_sensor">电磁传感器</string>
+    <string name="origntation_sensor">方向传感器</string>
+    <string name="barometer_sensor">压力传感器</string>
+    <string name="proximity_sensor">距离传感器</string>
+    <string name="temperature_sensor">温度传感器</string>
+    <string name="gravity_sensor">重力传感器</string>
+    <string name="humidity_sensor">湿度传感器</string>
+    <string name="rotation_vector_sensor">旋转矢量传感器</string>
+    <string name="linear_acceleration_sensor">线性加速度传感器</string>
+    <!--about-->
+    <string name="author_appname">软件名称：&#160;</string>
+    <string name="author_appversion">软件版本：&#160;</string>
+    <string name="author_qq">联系 QQ：&#160;</string>
+    <string name="author_github">Github：&#160;</string>
 
 </resources>

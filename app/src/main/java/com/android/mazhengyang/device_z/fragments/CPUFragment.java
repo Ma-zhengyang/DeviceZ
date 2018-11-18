@@ -46,8 +46,8 @@ public class CPUFragment extends BaseFragment {
 
     @BindView(R.id.bar_title)
     TextView title;
-    @BindView(R.id.tv_cpuinfo_cur_freq)
-    TextView tvCpuCurFreq;
+//    @BindView(R.id.tv_cpuinfo_cur_freq)
+//    TextView tvCpuCurFreq;
     @BindView(R.id.tv_cpuinfo_max_freq)
     TextView tvCpuMaxFreq;
     @BindView(R.id.tv_cpuinfo_min_freq)
@@ -75,9 +75,9 @@ public class CPUFragment extends BaseFragment {
 
         String curCpuFreq = getCpuFreq(CPUINFO_CUR_FREQ);
         Log.d(TAG, "onCreateView: curCpuFreq=" + curCpuFreq);
-        if (curCpuFreq != null && !"".equals(curCpuFreq)) {
-            tvCpuCurFreq.setText(String.format("%d MHz", Integer.valueOf(curCpuFreq) / 1000));
-        }
+//        if (curCpuFreq != null && !"".equals(curCpuFreq)) {
+//            tvCpuCurFreq.setText(String.format("%d MHz", Integer.valueOf(curCpuFreq) / 1000));
+//        }
         String maxCpuFreq = getCpuFreq(CPUINFO_MAX_FREQ);
         Log.d(TAG, "onCreateView: maxCpuFreq=" + maxCpuFreq);
         if (maxCpuFreq != null && !"".equals(maxCpuFreq)) {
@@ -95,7 +95,7 @@ public class CPUFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, null);
+        ParentAdapter parentAdapter = new ParentAdapter(context, parent_list, R.anim.layout_slide_right_out, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         return view;

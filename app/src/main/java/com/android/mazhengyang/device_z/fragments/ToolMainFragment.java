@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.MainAdapter;
 import com.android.mazhengyang.device_z.bean.MainBean;
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.ItemClickCallback;
 
 import java.util.ArrayList;
 import java.util.List;

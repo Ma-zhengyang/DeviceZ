@@ -12,8 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
+import com.android.mazhengyang.device_z.RotateAnim;
 import com.android.mazhengyang.device_z.bean.MainBean;
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.ItemClickCallback;
 
 import java.util.List;
 
@@ -22,6 +23,10 @@ import butterknife.ButterKnife;
 
 /**
  * Created by mazhengyang on 18-11-2.
+ *
+ * MainFragment
+ * ToolMainFragment
+ *
  */
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -82,7 +87,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
-            animation = AnimationUtils.loadAnimation(context, R.anim.slide_scale_out);
+
+            animation = new RotateAnim();
+
+//            animation = AnimationUtils.loadAnimation(context, R.anim.);
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {

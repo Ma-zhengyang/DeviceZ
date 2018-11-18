@@ -5,6 +5,13 @@
     android:background="@mipmap/main_bg"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/main_top_word" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_recyclerview"
         android:layout_width="wrap_content"
@@ -12,7 +19,7 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:overScrollMode="never"
         android:scrollbars="none">
 

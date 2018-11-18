@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.android.mazhengyang.device_z.R;
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.ItemClickCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +30,13 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private Context context;
     private List<?> parent_list;
+    private int animRes;
     private ItemClickCallback listener;
 
-    public ParentAdapter(Context context, List<?> lists, ItemClickCallback listener) {
+    public ParentAdapter(Context context, List<?> lists, int animRes, ItemClickCallback listener) {
         this.context = context;
         this.parent_list = lists;
+        this.animRes = animRes;
         this.listener = listener;
     }
 
@@ -77,7 +79,7 @@ public class ParentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             recyclerView.setAdapter(childBaseInfoAdapter);
 
             LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(context,
-                    R.anim.layout_slide_right_out);
+                    animRes);
             recyclerView.setLayoutAnimation(animationController);
             recyclerView.scheduleLayoutAnimation();
         } else {

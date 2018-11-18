@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.android.mazhengyang.device_z.R;
 import com.android.mazhengyang.device_z.adapter.ParentAdapter;
 import com.android.mazhengyang.device_z.bean.ScreenBean;
-import com.android.mazhengyang.device_z.callback.ItemClickCallback;
+import com.android.mazhengyang.device_z.ItemClickCallback;
 import com.android.mazhengyang.device_z.widget.ScreenTestView;
 
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public class ScreenFragment extends BaseFragment implements ItemClickCallback {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         parentRecyclerView.setLayoutManager(layoutManager);
-        parentAdapter = new ParentAdapter(context, parent_list, this);
+        parentAdapter = new ParentAdapter(context, parent_list, R.anim.layout_scale_out, this);
         parentRecyclerView.setAdapter(parentAdapter);
 
         return view;

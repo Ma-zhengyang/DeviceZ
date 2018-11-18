@@ -89,7 +89,7 @@ public class BatteryFragment extends BaseFragment {
 
         //执行过一遍，onDestroyView后，parent_list等属性其实已经不是null，会导致adapter中短时间
         //多次onBindViewHolder，导致动画效果失效，主要还是在onReceive中传入，这里直接传空
-        parentAdapter = new ParentAdapter(context, null/*parent_list*/, null);
+        parentAdapter = new ParentAdapter(context, null/*parent_list*/, R.anim.layout_slide_right_out, null);
         parentRecyclerView.setAdapter(parentAdapter);
 
         intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
