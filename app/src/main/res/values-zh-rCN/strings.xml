@@ -82,6 +82,8 @@
     <string name="since_boot_time_value">%1$d小时%2$d分钟</string>
     <string name="memory_capacity_ram">内存容量</string>
     <string name="memory_capacity_rom">手机容量</string>
+    <string name="memory_capacity_sdcard">存储卡容量</string>
+    <string name="memory_capacity_sdcard_not_mounted">存储卡（未挂载）</string>
     <string name="memory_available">剩余：&#160;</string>
     <string name="memory_total">总计：&#160;</string>
     <!--torch-->

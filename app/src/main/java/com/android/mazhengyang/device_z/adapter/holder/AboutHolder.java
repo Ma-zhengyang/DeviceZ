@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.mazhengyang.device_z.R;
+import com.android.mazhengyang.device_z.widget.MarqueeTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ public class AboutHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_title)
     public TextView title;
     @BindView(R.id.tv_info)
-    public TextView info;
+    public MarqueeTextView info;
 
     public AboutHolder(View itemView) {
         super(itemView);

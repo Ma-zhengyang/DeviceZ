@@ -82,6 +82,8 @@
     <string name="since_boot_time_value">%1$dH%2$dM</string>
     <string name="memory_capacity_ram">RAM</string>
     <string name="memory_capacity_rom">ROM</string>
+    <string name="memory_capacity_sdcard">TF</string>
+    <string name="memory_capacity_sdcard_not_mounted">TF(not mounted)</string>
     <string name="memory_available">Available:&#160;</string>
     <string name="memory_total">Total:&#160;</string>
     <!--torch-->

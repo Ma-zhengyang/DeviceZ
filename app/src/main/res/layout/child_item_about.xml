@@ -20,15 +20,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
-    <TextView
+    <com.android.mazhengyang.device_z.widget.MarqueeTextView
         android:id="@+id/tv_info"
         android:layout_width="wrap_content"
-        android:textColor="@color/black"
-        android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:layout_gravity="center_vertical"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
 
 </LinearLayout>
